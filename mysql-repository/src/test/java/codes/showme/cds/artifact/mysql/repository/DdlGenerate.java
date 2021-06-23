@@ -29,12 +29,6 @@ public class DdlGenerate {
                     .setPassword(mysql.getPassword());
             config.setDataSourceConfig(dataSourceConfig);
             DatabaseFactory.create(config);
-
         }
-
-
-
-
-
     }
 }
