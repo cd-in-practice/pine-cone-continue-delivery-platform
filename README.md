@@ -1,6 +1,7 @@
-# CDS
-开源的持续交付平台
+Pine Cone Continue Delivery Platform
+===
 
+松果持续交付平台
 
 ### 开发日志
 * 2021.06.30 改名为pine cone continue delivery platform
