@@ -4,6 +4,7 @@ Pine Cone Continue Delivery Platform
 松果持续交付平台
 
 ### 开发日志
+* 2021.07.01 对制品、App进行建模
 * 2021.06.30 改名为pine cone continue delivery platform
 * 2021.06.23: 试用阿里云效（1）尽早工程化原则 
     * 自身的自动化构建

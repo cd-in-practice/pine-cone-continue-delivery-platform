@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+import static codes.showme.pinecone.cdp.domain.app.App.COLUMN_NAMESPACE_SIZE;
+
 @MappedSuperclass
 @Entity
 @Table(name = "cdp_artifacts")
@@ -16,6 +18,7 @@ import java.util.Date;
 public abstract class Artifact implements Serializable {
 
     private static final long serialVersionUID = 6414966831562691687L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -29,20 +32,17 @@ public abstract class Artifact implements Serializable {
     @Column(name = "artifact_version", length = 64)
     private String artifactVersion;
 
-    @Column(name = "scm_id", length = 64)
-    private String scmId;
-
-    @Column(name = "pre_scm_id", length = 64)
-    private String preScmId;
-
-    @Column(name = "scm_url", length = 255)
-    private String scmUrl;
-
     @Column(name = "build_number", length = 16)
     private int buildNumber;
 
-    @Column(name = "app_id", length = 64)
-    private String appId;
+    @Column(name = "pipeline_id")
+    private long pipelineId;
+
+    @Column(name = "app_id")
+    private long appId;
+
+    @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
+    private String namespace;
 
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -55,6 +55,14 @@ public abstract class Artifact implements Serializable {
     public void save() {
         ArtifactRepository artifactRepository = InstanceFactory.getInstance(ArtifactRepository.class);
         artifactRepository.save(this);
+    }
+
+    public long getPipelineId() {
+        return pipelineId;
+    }
+
+    public void setPipelineId(long pipelineId) {
+        this.pipelineId = pipelineId;
     }
 
     public long getId() {
@@ -73,30 +81,6 @@ public abstract class Artifact implements Serializable {
         this.artifactVersion = artifactVersion;
     }
 
-    public String getScmId() {
-        return scmId;
-    }
-
-    public void setScmId(String scmId) {
-        this.scmId = scmId;
-    }
-
-    public String getPreScmId() {
-        return preScmId;
-    }
-
-    public void setPreScmId(String preScmId) {
-        this.preScmId = preScmId;
-    }
-
-    public String getScmUrl() {
-        return scmUrl;
-    }
-
-    public void setScmUrl(String scmUrl) {
-        this.scmUrl = scmUrl;
-    }
-
     public int getBuildNumber() {
         return buildNumber;
     }
@@ -105,13 +89,6 @@ public abstract class Artifact implements Serializable {
         this.buildNumber = buildNumber;
     }
 
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -135,5 +112,21 @@ public abstract class Artifact implements Serializable {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public long getAppId() {
+        return appId;
+    }
+
+    public void setAppId(long appId) {
+        this.appId = appId;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
     }
 }

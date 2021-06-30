@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class App implements Serializable {
 
     private static final long serialVersionUID = -140694797306671363L;
+    public static final int COLUMN_NAMESPACE_SIZE = 32;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +20,17 @@ public class App implements Serializable {
 
     @Column(name = "name", length = 64)
     private String name;
+
+    @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
+    private String namespace;
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
 
     public Long getVersion() {
         return version;

@@ -3,6 +3,7 @@ package codes.showme.pinecone.cdp.domain.artifact;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 @Entity

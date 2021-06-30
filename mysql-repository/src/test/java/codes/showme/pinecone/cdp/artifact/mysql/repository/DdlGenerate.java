@@ -1,5 +1,7 @@
 package codes.showme.pinecone.cdp.artifact.mysql.repository;
 
+import codes.showme.pinecone.cdp.domain.artifact.Artifact;
+import codes.showme.pinecone.cdp.domain.artifact.JavaArtifact;
 import codes.showme.pinecone.cdp.domain.artifact.TarArtifact;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
