@@ -1,0 +1,4 @@
+x-entity-packages: codes.showme.pinecone.cdp.domain
+x-transactional-packages: codes.showme.pinecone.cdp.domain
+x-querybean-packages: codes.showme.pinecone.cdp.domain
+profile-location: true

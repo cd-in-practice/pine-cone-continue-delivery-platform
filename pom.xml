@@ -2,31 +2,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>codes.showme</groupId>
-    <artifactId>cds</artifactId>
+    <groupId>codes.showme.pinecone</groupId>
+    <artifactId>pinecone-cdp</artifactId>
+    <name>pinecone-cdp</name>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>cds-domain</module>
+        <module>cdp-domain</module>
         <module>mysql-repository</module>
-        <module>cds-tech-common</module>
+        <module>cdp-tech-common</module>
     </modules>
     <packaging>pom</packaging>
-    <name>cds</name>
-    <description>ContinueDeliverySystem</description>
+    <description>ContinueDeliveryPlatform</description>
     <properties>
+        <maven.compiler.source>1.11</maven.compiler.source>
+        <maven.compiler.target>1.11</maven.compiler.target>
+        <ebean.version>12.8.2</ebean.version>
         <java.version>11</java.version>
         <testcontainers.version>1.15.3</testcontainers.version>
     </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>codes.showme</groupId>
-                <artifactId>cds-tech-common</artifactId>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-tech-common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>codes.showme</groupId>
-                <artifactId>cds-domain</artifactId>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>mysql-repository</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -37,14 +45,19 @@
             <dependency>
                 <groupId>io.ebean</groupId>
                 <artifactId>ebean</artifactId>
-                <version>12.8.3</version>
+                <version>${ebean.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.ebean</groupId>
+                <artifactId>ebean-api</artifactId>
+                <version>${ebean.version}</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>
                 <version>1.3.2</version>
             </dependency>
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
