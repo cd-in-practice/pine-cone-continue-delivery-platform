@@ -10,6 +10,9 @@
         <module>cdp-domain</module>
         <module>mysql-repository</module>
         <module>cdp-tech-common</module>
+        <module>grpc-server</module>
+        <module>cdp-pb</module>
+        <module>cdp-memory-repository</module>
     </modules>
     <packaging>pom</packaging>
     <description>ContinueDeliveryPlatform</description>
@@ -22,6 +25,16 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-memory-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-pb</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>codes.showme.pinecone</groupId>
                 <artifactId>cdp-tech-common</artifactId>
@@ -90,6 +103,11 @@
                 <scope>runtime</scope>
             </dependency>
             <dependency>
+                <groupId>io.github.lognet</groupId>
+                <artifactId>grpc-spring-boot-starter</artifactId>
+                <version>4.5.5</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>2.5.1</version>
@@ -115,5 +133,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

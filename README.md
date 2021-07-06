@@ -4,9 +4,10 @@ Pine Cone Continue Delivery Platform
 松果持续交付平台
 
 ### 开发日志
-* 2021.07.01 对制品、App进行建模
-* 2021.06.30 改名为pine cone continue delivery platform
-* 2021.06.23: 试用阿里云效（1）尽早工程化原则 
+* 7/6/2021: 引入gRPC服务模块
+* 7/1/2021: 对制品、App进行建模
+* 6/30/2021: 改名为pine cone continue delivery platform
+* 6/23/2021: 试用阿里云效（1）尽早工程化原则 
     * 自身的自动化构建
         * 构建环境的准备：每个步骤都要重新选一次，配置麻烦。比如我是JDK11，但是每个Java相关的步骤里都是JDK8。
             * 改进：
@@ -19,7 +20,7 @@ Pine Cone Continue Delivery Platform
     * 工程化问题：
         * 构建模板：没看到。只能一开始使用云效的模块。不能自定义模块。
     
-* 2021.06.22: 初始化代码仓库，对制品进行建模，引入Ebean和IoC，在单元测试中加入testcontainers
+* 6/22/2021: 初始化代码仓库，对制品进行建模，引入Ebean和IoC，在单元测试中加入testcontainers
 
 
 
