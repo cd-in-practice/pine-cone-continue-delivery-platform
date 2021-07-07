@@ -1,5 +1,8 @@
 package codes.showme.pinecone.cdp.domain.app;
 
+import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
+import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,10 +13,19 @@ public class App implements Serializable {
     private static final long serialVersionUID = -140694797306671363L;
     public static final int COLUMN_NAMESPACE_SIZE = 32;
 
+    private App(){
+    }
+
+    public static App newInstance(){
+        App result = new App();
+        IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
+        result.setId(idGenerator.generate());
+        return result;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private long id;
+    private String id;
 
     @Version
     private Long version;
@@ -40,11 +52,11 @@ public class App implements Serializable {
         this.version = version;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

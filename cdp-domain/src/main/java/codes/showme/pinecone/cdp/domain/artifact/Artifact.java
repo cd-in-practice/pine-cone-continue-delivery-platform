@@ -2,11 +2,13 @@ package codes.showme.pinecone.cdp.domain.artifact;
 
 import codes.showme.pinecone.cdp.domain.artifact.repository.ArtifactRepository;
 
+import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import static codes.showme.pinecone.cdp.domain.app.App.COLUMN_NAMESPACE_SIZE;
 
@@ -19,12 +21,18 @@ public abstract class Artifact implements Serializable {
 
     private static final long serialVersionUID = 6414966831562691687L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    public Serializable save(){
+        ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
+        if (Objects.isNull(getId())) {
+            IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
+            setId(idGenerator.generate());
+        }
+        return repository.save(this);
+    }
 
-    @Version
-    private Long version;
+    @Id
+    @Column(name = "name")
+    private String id;
 
     /**
      * 制品版本，与制品坐标不同
@@ -52,11 +60,6 @@ public abstract class Artifact implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
-    public void save() {
-        ArtifactRepository artifactRepository = InstanceFactory.getInstance(ArtifactRepository.class);
-        artifactRepository.save(this);
-    }
-
     public long getPipelineId() {
         return pipelineId;
     }
@@ -65,11 +68,11 @@ public abstract class Artifact implements Serializable {
         this.pipelineId = pipelineId;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -104,14 +107,6 @@ public abstract class Artifact implements Serializable {
 
     public void setUpdatedTime(Date updatedTime) {
         this.updatedTime = updatedTime;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     public long getAppId() {

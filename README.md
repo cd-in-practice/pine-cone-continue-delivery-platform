@@ -4,6 +4,7 @@ Pine Cone Continue Delivery Platform
 松果持续交付平台
 
 ### 开发日志
+* 7/7/2021: 加入Mock模块用于测试，解耦Id的生成实现
 * 7/6/2021: 引入gRPC服务模块
 * 7/1/2021: 对制品、App进行建模
 * 6/30/2021: 改名为pine cone continue delivery platform

@@ -2,7 +2,9 @@ package codes.showme.pinecone.cdp.domain.artifact.repository;
 
 import codes.showme.pinecone.cdp.domain.artifact.Artifact;
 
+import java.io.Serializable;
+
 public interface ArtifactRepository {
 
-    long save(Artifact artifact);
+    Serializable save(Artifact artifact);
 }
