@@ -4,6 +4,8 @@ import codes.showme.pinecone.cdp.domain.artifact.repository.ArtifactRepository;
 
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
+import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,17 +23,8 @@ public abstract class Artifact implements Serializable {
 
     private static final long serialVersionUID = 6414966831562691687L;
 
-    public Serializable save(){
-        ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
-        if (Objects.isNull(getId())) {
-            IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
-            setId(idGenerator.generate());
-        }
-        return repository.save(this);
-    }
-
     @Id
-    @Column(name = "name")
+    @Column(name = "id", length = 32)
     private String id;
 
     /**
@@ -43,11 +36,11 @@ public abstract class Artifact implements Serializable {
     @Column(name = "build_number", length = 16)
     private int buildNumber;
 
-    @Column(name = "pipeline_id")
-    private long pipelineId;
+    @Column(name = "pipeline_history_id")
+    private String pipelineHistoryId;
 
     @Column(name = "app_id")
-    private long appId;
+    private String appId;
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
@@ -60,12 +53,36 @@ public abstract class Artifact implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
-    public long getPipelineId() {
-        return pipelineId;
+    /**
+     * 分页列出一个App的指定类型的制品
+     *
+     * @param appId
+     * @param pageRequest
+     * @param clasz
+     * @param <T>
+     * @return
+     */
+    public <T extends Artifact> Pagination<T> pagination(String appId, PageRequest pageRequest, Class<T> clasz) {
+        ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
+        return repository.pagination(appId, pageRequest, clasz);
     }
 
-    public void setPipelineId(long pipelineId) {
-        this.pipelineId = pipelineId;
+
+    public Serializable save() {
+        ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
+        if (Objects.isNull(getId())) {
+            IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
+            setId(idGenerator.generate());
+        }
+        return repository.save(this);
+    }
+
+    public String getPipelineHistoryId() {
+        return pipelineHistoryId;
+    }
+
+    public void setPipelineHistoryId(String pipelineHistoryId) {
+        this.pipelineHistoryId = pipelineHistoryId;
     }
 
     public String getId() {
@@ -92,7 +109,6 @@ public abstract class Artifact implements Serializable {
         this.buildNumber = buildNumber;
     }
 
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -109,11 +125,11 @@ public abstract class Artifact implements Serializable {
         this.updatedTime = updatedTime;
     }
 
-    public long getAppId() {
+    public String getAppId() {
         return appId;
     }
 
-    public void setAppId(long appId) {
+    public void setAppId(String appId) {
         this.appId = appId;
     }
 

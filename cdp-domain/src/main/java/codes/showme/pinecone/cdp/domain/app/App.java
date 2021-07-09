@@ -1,9 +1,9 @@
 package codes.showme.pinecone.cdp.domain.app;
 
-import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
-import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
@@ -13,22 +13,9 @@ public class App implements Serializable {
     private static final long serialVersionUID = -140694797306671363L;
     public static final int COLUMN_NAMESPACE_SIZE = 32;
 
-    private App(){
-    }
-
-    public static App newInstance(){
-        App result = new App();
-        IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
-        result.setId(idGenerator.generate());
-        return result;
-    }
-
     @Id
-    @Column(name = "id")
+    @Column(name = "id", length = 32)
     private String id;
-
-    @Version
-    private Long version;
 
     @Column(name = "name", length = 64)
     private String name;
@@ -42,14 +29,6 @@ public class App implements Serializable {
 
     public void setNamespace(String namespace) {
         this.namespace = namespace;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
     }
 
     public String getId() {

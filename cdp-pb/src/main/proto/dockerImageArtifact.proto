@@ -10,13 +10,14 @@ message DockerImageArtifactRequest {
   string name = 1;
   string artifactVersion = 2;
   int32  buildNumber = 3;
-  int64 pipelineId = 4;
-  int64 appId = 5;
+  string pipelineHistoryId = 4;
+  string appId = 5;
   string namespace = 6;
+
   string repo = 7;
   string tag = 8;
 }
 
 message DockerImageArtifactReply {
-  int64 id = 1;
+  string id = 1;
 }

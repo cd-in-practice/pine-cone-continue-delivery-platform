@@ -26,7 +26,7 @@ public class DockerImageArtifactController extends DockerImageArtifactGrpc.Docke
         result.setRepo(request.getRepo());
         result.setTag(request.getTag());
         result.setAppId(request.getAppId());
-        result.setPipelineId(request.getPipelineId());
+        result.setPipelineHistoryId(request.getPipelineHistoryId());
         result.setArtifactVersion(request.getArtifactVersion());
         result.setBuildNumber(request.getBuildNumber());
         result.setNamespace(request.getNamespace());
