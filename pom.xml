@@ -14,6 +14,7 @@
         <module>cdp-pb</module>
         <module>cdp-mock-impl</module>
         <module>web</module>
+        <module>spring-ioc-impl</module>
     </modules>
     <packaging>pom</packaging>
     <description>ContinueDeliveryPlatform</description>
@@ -25,6 +26,11 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>spring-ioc-impl</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
             <dependency>
                 <groupId>codes.showme.pinecone</groupId>
                 <artifactId>cdp-mock-impl</artifactId>

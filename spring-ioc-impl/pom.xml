@@ -8,17 +8,13 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
-    <artifactId>cdp-mock-impl</artifactId>
+
+    <artifactId>spring-ioc-impl</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
             <artifactId>cdp-tech-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>codes.showme.pinecone</groupId>
-            <artifactId>cdp-domain</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -28,17 +24,6 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
-
 
 </project>

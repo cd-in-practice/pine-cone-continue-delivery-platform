@@ -1,5 +1,10 @@
 package codes.showme.pinecone.cdp.domain.app;
 
+import codes.showme.pinecone.cdp.domain.app.repository.AppRepository;
+import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
+import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,6 +27,11 @@ public class App implements Serializable {
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
+
+    public static Pagination<App> listByNamespace(String namespace, PageRequest pageRequest) {
+        AppRepository appRepository = InstanceFactory.getInstance(AppRepository.class);
+        return appRepository.listByNamespace(namespace, pageRequest);
+    }
 
     public String getNamespace() {
         return namespace;
