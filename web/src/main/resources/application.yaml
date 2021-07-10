@@ -1,0 +1,30 @@
+---
+
+server:
+  port: 8080
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    favicon:
+      enabled: false
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+#    注意prefix必须以/结尾
+    prefix: classpath:/templates/pages/
+    content-type: text/html
+    encoding: UTF-8
+    suffix: .html
+    check-template-location: true
+#
+#logging:
+#  level:
+#
+
+
+
