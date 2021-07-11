@@ -13,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "cdp_pipelines")
 public class Pipeline implements Serializable {
+
     private static final long serialVersionUID = -1969892567479603934L;
 
     @Id
@@ -20,15 +21,15 @@ public class Pipeline implements Serializable {
     private String id;
 
     @ElementCollection
-    private Set<String> appIds;
+    private Set<String> repoIds;
 
-    public Pagination<Pipeline> pagination(String appId, PageRequest pageRequest){
+    public Pagination<Pipeline> pagination(String appId, PageRequest pageRequest) {
         PipelineRepository repository = InstanceFactory.getInstance(PipelineRepository.class);
         return repository.pagination(appId, pageRequest);
     }
 
-    public Set<String> getAppIds() {
-        return appIds;
+    public Set<String> getRepoIds() {
+        return repoIds;
     }
 
     public String getId() {

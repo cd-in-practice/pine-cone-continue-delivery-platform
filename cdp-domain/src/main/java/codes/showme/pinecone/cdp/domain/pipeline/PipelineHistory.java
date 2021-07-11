@@ -9,6 +9,9 @@ import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * pipeline执行历史
+ */
 @Entity
 @Table(name = "cdp_pipeline_history")
 public class PipelineHistory implements Serializable {
@@ -29,7 +32,14 @@ public class PipelineHistory implements Serializable {
     @Column(name = "pipeline_id", length = 32)
     public String pipelineId;
 
-    public Pagination<PipelineHistory> pagination(String appId, PageRequest pageRequest){
+    @Column(name = "scm_commit")
+    private String scmCommit;
+
+
+    @Column(name = "pre_scm_commit")
+    private String preScmCommit;
+
+    public Pagination<PipelineHistory> pagination(String appId, PageRequest pageRequest) {
         PipelineHistoryRepository repository = InstanceFactory.getInstance(PipelineHistoryRepository.class);
         return repository.pagination(appId, pageRequest);
     }

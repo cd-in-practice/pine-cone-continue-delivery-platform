@@ -1,5 +1,6 @@
 package codes.showme.pinecone.cdp.domain.artifact;
 
+import codes.showme.pinecone.cdp.domain.app.App;
 import codes.showme.pinecone.cdp.domain.artifact.repository.ArtifactRepository;
 
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
@@ -27,6 +28,9 @@ public abstract class Artifact implements Serializable {
     @Column(name = "id", length = 32)
     private String id;
 
+    @Column(name = "name", length = 64)
+    private String name;
+
     /**
      * 制品版本，与制品坐标不同
      */
@@ -35,6 +39,9 @@ public abstract class Artifact implements Serializable {
 
     @Column(name = "build_number", length = 16)
     private int buildNumber;
+
+    @Column(name = "pipeline_id")
+    private String pipelineId;
 
     @Column(name = "pipeline_history_id")
     private String pipelineHistoryId;
@@ -54,6 +61,31 @@ public abstract class Artifact implements Serializable {
     private Date updatedTime;
 
     /**
+     * 将此制品定义成App
+     *
+     * @return
+     */
+    public void defineAsAnApp(String appId) {
+        setAppId(id);
+        save();
+    }
+
+    /**
+     * pipeline下的各种制品
+     *
+     * @param pipelineId
+     * @param pageRequest
+     * @param clasz
+     * @param <T>
+     * @return
+     */
+    public <T extends Artifact> Pagination<T> paginationByPipelineId(String pipelineId, PageRequest pageRequest, Class<T> clasz) {
+
+        return null;
+    }
+
+
+    /**
      * 分页列出一个App的指定类型的制品
      *
      * @param appId
@@ -62,7 +94,7 @@ public abstract class Artifact implements Serializable {
      * @param <T>
      * @return
      */
-    public <T extends Artifact> Pagination<T> pagination(String appId, PageRequest pageRequest, Class<T> clasz) {
+    public <T extends Artifact> Pagination<T> paginationByAppId(String appId, PageRequest pageRequest, Class<T> clasz) {
         ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
         return repository.pagination(appId, pageRequest, clasz);
     }

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * 虚拟的概念，可以是能被部署的应用、Mobile应用、嵌入式固件
+ */
 @Entity
 @Table(name = "cdp_apps")
 public class App implements Serializable {
@@ -27,6 +30,11 @@ public class App implements Serializable {
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
+
+    public App(String appName, String namespace) {
+        this.name = appName;
+        this.namespace = namespace;
+    }
 
     public static Pagination<App> listByNamespace(String namespace, PageRequest pageRequest) {
         AppRepository appRepository = InstanceFactory.getInstance(AppRepository.class);
