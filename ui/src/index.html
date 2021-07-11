@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">AppName</h1>
+        <h2 class="subtitle">description</h2>
+    </div>
+    <div class="container">
+        <div class="field is-grouped is-grouped-multiline">
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">SIT</span>
+                    <span class="tag is-info">0.9.3</span>
+                </div>
+            </div>
+
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">UAT</span>
+                    <span class="tag is-success">0.9.2</span>
+                </div>
+            </div>
+
+            <div class="control">
+                <div class="tags has-addons">
+                    <span class="tag is-dark">PROD</span>
+                    <span class="tag is-primary">0.9.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="tabs">
+            <ul>
+                <li class="is-active"><a>Artifacts</a></li>
+                <li><a>Deployments</a></li>
+                <li><a>Pipelines</a></li>
+                <li><a>Tests</a></li>
+                <li><a>AppConfig</a></li>
+                <li><a>DeployConfigs</a></li>
+            </ul>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>BuildNumber</th>
+                <th>Name</th>
+                <th>VersionNumber</th>
+                <th>Type</th>
+                <th>Deployed</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>2</td>
+                <td>abc</td>
+                <td>abc-2021-7-2</td>
+                <td>docker</td>
+                <td>
+                    <div class="select is-small">
+                        <select>
+                            <option>SIT</option>
+                            <option>UAT</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+                <tr>
+                    <td>1</td>
+                    <td>abc</td>
+                    <td>abc-2021-7-1</td>
+                    <td>docker</td>
+                    <td>
+                        <div class="select is-small">
+                            <select>
+                                <option>SIT</option>
+                                <option>UAT</option>
+                            </select>
+                        </div>
+                        <div class="field is-grouped is-grouped-multiline">
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">SIT</span>
+                                    <span class="tag is-info">2021/7/9</span>
+                                </div>
+                            </div>
+
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">UAT</span>
+                                    <span class="tag is-success">2021/7/1</span>
+                                </div>
+                            </div>
+
+                            <div class="control">
+                                <div class="tags has-addons">
+                                    <span class="tag is-dark">PROD</span>
+                                    <span class="tag is-primary">2021/6/28</span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
