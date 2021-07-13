@@ -13,6 +13,13 @@ pipeline {
       }
     }
     stage('自定义构建过程') {
+      agent {
+        docker {
+          reuseNode 'true'
+//           registryUrl 'https://coding-public-docker.pkg.coding.net'
+          image 'maven:3.6.3-openjdk-11-slim'
+        }
+      }
       steps {
 
         sh "mvn clean test package"
