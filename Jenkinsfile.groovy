@@ -23,7 +23,10 @@ pipeline {
       }
       steps {
 
-        sh "mvn clean test package"
+        sh """
+            mvn clean test package
+            curl -T grpc-server/target/grpc-server-0.0.1-SNAPSHOT.jar -u abc "https://add2asfasfsadf-generic.pkg.coding.net/cdp/cdp/grpc-server?version=${CI_BUILD_NUMBER}"
+        """
         // 请在此处补充您的构建过程
       }
     }
