@@ -49,11 +49,6 @@
             </dependency>
             <dependency>
                 <groupId>codes.showme.pinecone</groupId>
-                <artifactId>cdp-memory-repository</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>codes.showme.pinecone</groupId>
                 <artifactId>cdp-pb</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
