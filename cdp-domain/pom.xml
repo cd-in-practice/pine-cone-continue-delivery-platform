@@ -11,10 +11,6 @@
     <artifactId>cdp-domain</artifactId>
     <packaging>jar</packaging>
     <name>cdp-domain</name>
-    <properties>
-        <java.release>11</java.release>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -59,10 +55,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>${java.release}</release>
-                </configuration>
             </plugin>
 
         </plugins>
