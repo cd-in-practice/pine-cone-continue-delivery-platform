@@ -18,6 +18,7 @@ pipeline {
           reuseNode 'true'
 //           registryUrl 'https://coding-public-docker.pkg.coding.net'
           image 'maven:3.6.3-openjdk-11-slim'
+          args '-v /root/.gradle/:/root/.gradle/ -v /root/.m2/:/root/.m2/'
         }
       }
       steps {
