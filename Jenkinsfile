@@ -14,7 +14,8 @@ pipeline {
     }
     stage('自定义构建过程') {
       steps {
-        echo "自定义构建过程开始"
+
+        sh "mvn clean test package"
         // 请在此处补充您的构建过程
       }
     }
