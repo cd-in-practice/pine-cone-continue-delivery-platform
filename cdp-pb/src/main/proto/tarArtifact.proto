@@ -2,11 +2,11 @@ syntax = "proto3";
 import "google/protobuf/empty.proto";
 option java_package = "code.showme.pinecone.cdp.artifact";
 
-service DockerImageArtifact {
-  rpc push ( DockerImageArtifactRequest) returns (DockerImageArtifactReply) {}
+service TarArtifact {
+  rpc push ( TarArtifactRequest) returns (TarArtifactReply) {}
 }
 
-message DockerImageArtifactRequest {
+message TarArtifactRequest {
   string name = 1;
   string artifactVersion = 2;
   int32  buildNumber = 3;
@@ -15,10 +15,9 @@ message DockerImageArtifactRequest {
   string appId = 6;
   string namespace = 7;
 
-  string tag = 12;
-  string repo = 13;
+  string url = 12;
 }
 
-message DockerImageArtifactReply {
+message TarArtifactReply {
   bool received = 1;
 }

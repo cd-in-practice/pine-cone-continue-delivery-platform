@@ -13,9 +13,9 @@ public class DockerImageArtifactController extends DockerImageArtifactGrpc.Docke
         try {
             DockerImageArtifact artifact = convert(request);
             artifact.save();
-            responseObserver.onNext(DockerImageArtifactOuterClass.DockerImageArtifactReply.newBuilder().setId(artifact.getId()).build());
+            responseObserver.onNext(DockerImageArtifactOuterClass.DockerImageArtifactReply.newBuilder().setReceived(true).build());
             responseObserver.onCompleted();
-        }catch (Exception e){
+        } catch (Exception e) {
             // TODO specific error
             responseObserver.onError(e);
         }
@@ -23,13 +23,15 @@ public class DockerImageArtifactController extends DockerImageArtifactGrpc.Docke
 
     private DockerImageArtifact convert(DockerImageArtifactOuterClass.DockerImageArtifactRequest request) {
         DockerImageArtifact result = new DockerImageArtifact();
-        result.setRepo(request.getRepo());
-        result.setTag(request.getTag());
         result.setAppId(request.getAppId());
         result.setPipelineHistoryId(request.getPipelineHistoryId());
+        result.setPipelineHistoryUrl(request.getPipelineHistoryUrl());
         result.setArtifactVersion(request.getArtifactVersion());
         result.setBuildNumber(request.getBuildNumber());
         result.setNamespace(request.getNamespace());
+
+        result.setRepo(request.getRepo());
+        result.setTag(request.getTag());
         return result;
     }
 }

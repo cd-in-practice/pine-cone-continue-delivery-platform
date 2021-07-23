@@ -46,6 +46,12 @@ public abstract class Artifact implements Serializable {
     @Column(name = "pipeline_history_id")
     private String pipelineHistoryId;
 
+    /**
+     * 过渡阶段使用
+     */
+    @Column(name = "pipeline_history_url")
+    private String pipelineHistoryUrl;
+
     @Column(name = "app_id")
     private String appId;
 
@@ -59,6 +65,16 @@ public abstract class Artifact implements Serializable {
     @Column(name = "updated_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
+
+    /**
+     * 暂时为json结构，未来如果需要支持多种结构再扩展
+     * 构建过程的元数据是跟制品，还是跟流水线，是一个问题。
+     * 这里认为，应该对构建过程中的元数据进行分类。
+     * 这里的rawMetadata是制品类的元数据。
+     */
+    @Column(name = "raw_metadata")
+    @Lob
+    private String rawMetadata;
 
     /**
      * 将此制品定义成App
@@ -107,6 +123,38 @@ public abstract class Artifact implements Serializable {
             setId(idGenerator.generate());
         }
         return repository.save(this);
+    }
+
+    public String getPipelineHistoryUrl() {
+        return pipelineHistoryUrl;
+    }
+
+    public void setPipelineHistoryUrl(String pipelineHistoryUrl) {
+        this.pipelineHistoryUrl = pipelineHistoryUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPipelineId() {
+        return pipelineId;
+    }
+
+    public void setPipelineId(String pipelineId) {
+        this.pipelineId = pipelineId;
+    }
+
+    public String getRawMetadata() {
+        return rawMetadata;
+    }
+
+    public void setRawMetadata(String rawMetadata) {
+        this.rawMetadata = rawMetadata;
     }
 
     public String getPipelineHistoryId() {
