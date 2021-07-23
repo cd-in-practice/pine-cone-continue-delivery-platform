@@ -20,9 +20,10 @@ public class App implements Serializable {
 
     private static final long serialVersionUID = -140694797306671363L;
     public static final int COLUMN_NAMESPACE_SIZE = 32;
+    public static final int COLUMN_ID_LENGTH = 32;
 
     @Id
-    @Column(name = "id", length = 32)
+    @Column(name = "id", length = COLUMN_ID_LENGTH)
     private String id;
 
     @Column(name = "name", length = 64)

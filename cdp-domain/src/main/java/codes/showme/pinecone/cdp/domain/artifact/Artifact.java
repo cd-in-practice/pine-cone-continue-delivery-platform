@@ -25,7 +25,7 @@ public abstract class Artifact implements Serializable {
     private static final long serialVersionUID = 6414966831562691687L;
 
     @Id
-    @Column(name = "id", length = 32)
+    @Column(name = "id", length = 64)
     private String id;
 
     @Column(name = "name", length = 64)
@@ -37,7 +37,7 @@ public abstract class Artifact implements Serializable {
     @Column(name = "artifact_version", length = 64)
     private String artifactVersion;
 
-    @Column(name = "build_number", length = 16)
+    @Column(name = "build_number")
     private int buildNumber;
 
     @Column(name = "pipeline_id")
@@ -52,7 +52,7 @@ public abstract class Artifact implements Serializable {
     @Column(name = "pipeline_history_url")
     private String pipelineHistoryUrl;
 
-    @Column(name = "app_id")
+    @Column(name = "app_id", length = App.COLUMN_ID_LENGTH)
     private String appId;
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
