@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="box">
+        <h1 class="title">AppName</h1>
+        <h2 class="subtitle">description</h2>
+    </div>
+
+    <div class="box">
+        <div class="tabs">
+            <ul>
+                <li class="is-active"><a>Env</a></li>
+                <li><a>Artifacts</a></li>
+                <li><a>Deployments</a></li>
+                <li><a>Pipelines</a></li>
+                <li><a>Tests</a></li>
+            </ul>
+        </div>
+        <div class="content">
+
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">
+                            Overview
+                        </p>
+                        <ul class="menu-list">
+                            <li ><a class="is-active">SIT</a></li>
+                            <li><a>UAT</a></li>
+                            <li><a>PROD</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column">
+                    <div class="tabs">
+                        <ul>
+                            <li ><a>Overview</a></li>
+                            <li class="is-active"><a>AppConfig</a></li>
+                            <li><a>DeployConfig</a></li>
+                            <li><a>Activity</a></li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <p>应用在SIT环境的应用配置</p>
+                        <div class="tags has-addons">
+                            <span class="tag">Version</span>
+                            <span class="tag is-primary">commit-11</span>
+                        </div>
+                        <div class="field has-addons">
+                            <p class="control">
+                                <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-align-left"></i>
+      </span>
+                                    <span>Edit</span>
+                                </button>
+                            </p>
+                            <p class="control">
+                                <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-align-center"></i>
+      </span>
+                                    <span>Compare</span>
+                                </button>
+                            </p>
+                            <p class="control">
+                                <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-align-right"></i>
+      </span>
+                                    <span>History</span>
+                                </button>
+                            </p>
+                            <p class="control">
+                                <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-align-right"></i>
+      </span>
+                                    <span>Duplicate</span>
+                                </button>
+                            </p>
+                        </div>
+
+                        <div class="columns">
+                            <div class="column">
+                                配置项的内容
+                            </div>
+                            <div class="column">
+                                配置项的使用定义。
+                                配置项的定义与配置项的使用是一对多的关系。
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
+</body>
+</html>
