@@ -1,2 +1,5 @@
+spring:
+  main:
+    banner-mode: "off"
 grpc:
   port: 6565
