@@ -28,7 +28,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./grpc-server
-          push: true
+          push: false
           tags: cdp-grpc-server:${{ github.GITHUB_SHA }}-${{ github.GITHUB_RUN_ID }}
       #      - name: Docker Login
       #        uses: docker/login-action@v1.10.0
