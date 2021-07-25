@@ -3,6 +3,8 @@ Pine Cone Continue Delivery Platform
 
 松果持续交付平台
 
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fcd-in-practice%2Fpine-cone-continue-delivery-platform%2Fbadge&style=popout-square)](https://actions-badge.atrox.dev/cd-in-practice/pine-cone-continue-delivery-platform/goto)
+
 
 ### 概念定义
 #### Artifact(制品)
