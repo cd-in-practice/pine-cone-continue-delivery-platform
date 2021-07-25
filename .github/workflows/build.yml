@@ -33,7 +33,7 @@ jobs:
         with:
           context: ./grpc-server
           push: false
-          tags: "cdp-grpc-server:cdp-$GITHUB_SHA_SHORT"
+          tags: pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}
       #      - name: Docker Login
       #        uses: docker/login-action@v1.10.0
       #        with:
