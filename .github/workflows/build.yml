@@ -36,7 +36,7 @@ jobs:
       with:
         context: .
         push: false
-        tags: pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}-$GITHUB_RUN_ID
+        tags: pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}-${{ github.GITHUB_RUN_ID }}
 #  docker-build:
 #    runs-on: ubuntu-latest
 #    steps:
