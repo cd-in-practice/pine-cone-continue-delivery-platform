@@ -34,7 +34,7 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2
       with:
-        context: .
+        context: ./grpc-server
         push: false
         tags: pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}-${{ github.GITHUB_RUN_ID }}
 #  docker-build:
