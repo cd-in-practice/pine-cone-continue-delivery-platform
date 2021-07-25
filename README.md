@@ -25,7 +25,10 @@ Artifact可直接转成App
 
 
 ### 开发日志
-* 下期预告：GitHub Actions试用
+* 7/25/2021: GitHub Actions试用：
+    1. 实现maven构建，docker构建，docker push；
+    2. 使用了加密的环境变量；
+    3. 遗留问题：不知道它的default变量该如何引用。
 * 7/14/2021: 设计DevOps的UI
 * 7/12/2021: 试用coding流水线
     * 支持原生的Jenkinsfile，灵活。这也意味着对人的能力要求高了；
