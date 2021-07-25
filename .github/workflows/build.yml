@@ -43,7 +43,7 @@ jobs:
       with:
         context: ./grpc-server
         push: true
-        tags: registry.cn-hangzhou.aliyuncs.com/pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}-${{ env.GITHUB_RUN_ID }}
+        tags: registry.cn-hangzhou.aliyuncs.com/pinecone_cdp/cdp-grpc-server:cdp-${{ env.GITHUB_SHA_SHORT }}-${{ github.run_number }}
 
 #  docker-build:
 #    runs-on: ubuntu-latest
