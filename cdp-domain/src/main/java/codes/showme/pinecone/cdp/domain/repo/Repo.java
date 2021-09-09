@@ -17,6 +17,9 @@ public class Repo implements Serializable {
     @Column(name = "name", length = 64)
     private String name;
 
+    @Column(name = "namespace", length = 32)
+    private String namespace;
+
     @Embedded
     private List<RepoUrl> repoUrls;
 
