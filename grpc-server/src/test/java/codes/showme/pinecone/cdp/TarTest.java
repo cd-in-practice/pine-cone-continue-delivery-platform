@@ -9,6 +9,7 @@ import org.junit.Ignore;
 
 import java.util.logging.Level;
 
+@Ignore
 public class TarTest {
 
     @org.junit.Test

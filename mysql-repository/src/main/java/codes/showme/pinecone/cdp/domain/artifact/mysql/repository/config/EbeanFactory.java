@@ -1,4 +1,4 @@
-package codes.showme.pinecone.cdp.artifact.mysql.repository.config;
+package codes.showme.pinecone.cdp.domain.artifact.mysql.repository.config;
 
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
