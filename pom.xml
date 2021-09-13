@@ -15,6 +15,11 @@
         <module>cdp-mock-impl</module>
         <module>web</module>
         <module>spring-ioc-impl</module>
+        <module>cdp-code-analysis-domain</module>
+        <module>cdp-code-analysis-server</module>
+        <module>postgres-repository</module>
+        <module>cdp-rocketmq-repository</module>
+        <module>cdp-tech-common-impl</module>
     </modules>
     <packaging>pom</packaging>
     <description>ContinueDeliveryPlatform</description>
@@ -26,18 +31,18 @@
     </properties>
     <build>
         <pluginManagement>
-             <plugins>
-                 <plugin>
-                     <groupId>org.apache.maven.plugins</groupId>
-                     <artifactId>maven-compiler-plugin</artifactId>
-                     <version>3.8.1</version>
-                 </plugin>
-                 <plugin>
-                     <groupId>org.springframework.boot</groupId>
-                     <artifactId>spring-boot-maven-plugin</artifactId>
-                     <version>2.5.3</version>
-                 </plugin>
-             </plugins>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>2.5.3</version>
+                </plugin>
+            </plugins>
         </pluginManagement>
     </build>
     <dependencyManagement>
@@ -50,6 +55,31 @@
             <dependency>
                 <groupId>codes.showme.pinecone</groupId>
                 <artifactId>cdp-mock-impl</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-tech-common-impl</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>postgres-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-rocketmq-repository</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-code-analysis-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>codes.showme.pinecone</groupId>
+                <artifactId>cdp-code-analysis-server</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -136,6 +166,40 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot</artifactId>
+                <version>2.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-autoconfigure</artifactId>
+                <version>2.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>4.3.0</version>
+            </dependency>
+            <!--json-->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.12.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.12.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.12.5</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>2.5.1</version>
                 <scope>test</scope>
@@ -163,6 +227,38 @@
                 <artifactId>mysql</artifactId>
                 <scope>test</scope>
                 <version>1.15.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>postgresql</artifactId>
+                <scope>test</scope>
+                <version>1.15.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gitlab4j</groupId>
+                <artifactId>gitlab4j-api</artifactId>
+                <version>4.17.0</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.30</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.12.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

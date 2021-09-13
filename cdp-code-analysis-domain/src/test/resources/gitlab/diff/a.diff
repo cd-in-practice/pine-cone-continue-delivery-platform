@@ -1,0 +1,24 @@
+@@ -1 +1 @@
+-foo
++quux
+
+
+
+@@ -1,8 +1,7 @@
+ <ul>
+   <li>blue item</li>
+   <li>red item</li>
+-  <li>green item</li>
+-  <li>purple item</li>
++  <li>orange item</li>
+ </ul>
+
+
+@@ -1 +1 @@
+-this is a git diff test example
++this is a diff example
+
+
+@@ -1 +1,2 @@
+ This is a txt file for Git Diff Example.
++One more line.

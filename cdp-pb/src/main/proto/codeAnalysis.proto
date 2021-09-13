@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option java_package = "code.showme.pinecone.cdp.code";
+
+service CodeAnalysis {
+  rpc syncGitLabCommits (SyncGitLabCommitsRequest) returns (SyncGitLabCommitsReply) {}
+  rpc syncGitLabDiffs (SyncGitLabDiffsRequest) returns (SyncGitLabDiffsReply) {}
+}
+
+message SyncGitLabCommitsRequest {
+  string gitlabServerUrl = 1;
+  string gitlabProject = 2;
+  string token = 3;
+  string namespace = 4;
+}
+
+message SyncGitLabDiffsRequest {
+  string gitlabServerUrl = 1;
+  string gitlabProject = 2;
+  string token = 3;
+  string namespace = 4;
+  string commitId = 5;
+}
+
+message SyncGitLabCommitsReply {
+  bool received = 1;
+}
+
+message SyncGitLabDiffsReply {
+  bool received = 1;
+}

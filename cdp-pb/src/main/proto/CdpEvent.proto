@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option java_package = "code.showme.pinecone.cdp.event";
+
+
+message CdpEvent {
+  enum EventType {
+    COMMIT_SYNC_EVENT = 0;
+  }
+  EventType eventType = 4;
+}

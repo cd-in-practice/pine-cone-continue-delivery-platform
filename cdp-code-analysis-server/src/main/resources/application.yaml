@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: cdp-code-analysis-server
+  main:
+    banner-mode: "off"
+
+
+rocketmq:
+  producer:
+    group: ${spring.application.name}
+    name-server: 127.0.0.1:9876
+  consumer:
+    group: ${spring.application.name}
+    name-server: 127.0.0.1:9876

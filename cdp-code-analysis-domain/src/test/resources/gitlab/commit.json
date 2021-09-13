@@ -1,0 +1,21 @@
+{
+  "author" : null,
+  "authoredDate" : "2021-09-03T07:16:14Z",
+  "authorEmail" : "ex_lixc5@partner.midea.com",
+  "authorName" : "ex_lixc5",
+  "committedDate" : "2021-09-03T07:16:14Z",
+  "committerEmail" : "ex_lixc5@partner.midea.com",
+  "committerName" : "ex_lixc5",
+  "createdAt" : "2021-09-03T07:16:14Z",
+  "id" : "8775115e81db41feaa997625337597ec2dd99dc4",
+  "message" : "qq music transfer to mp3 log\n",
+  "parentIds" : [ "fa6f983ebaa1db691d295318e782e56bb0cb730b" ],
+  "shortId" : "8775115e",
+  "stats" : null,
+  "status" : null,
+  "timestamp" : null,
+  "title" : "qq music transfer to mp3 log",
+  "url" : null,
+  "webUrl" : "http://git.midea.com/aicloud-speech/midea-aispeech/-/commit/8775115e81db41feaa997625337597ec2dd99dc4",
+  "lastPipeline" : null
+}

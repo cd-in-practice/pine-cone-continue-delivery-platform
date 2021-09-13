@@ -9,12 +9,25 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>grpc-server</artifactId>
+    <artifactId>cdp-code-analysis-server</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
             <artifactId>cdp-code-analysis-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>codes.showme.pinecone</groupId>
+            <artifactId>cdp-pb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
         </dependency>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
@@ -27,10 +40,6 @@
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
             <artifactId>spring-ioc-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>codes.showme.pinecone</groupId>
-            <artifactId>cdp-pb</artifactId>
         </dependency>
         <dependency>
             <groupId>io.github.lognet</groupId>
@@ -51,25 +60,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <finalName>app</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>codes.showme.pinecone.cdp.grpcserver.Main</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
