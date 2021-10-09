@@ -1,0 +1,51 @@
+{
+  "receiver": "webhook-trouble-handler",
+  "status": "firing",
+  "alerts": [
+    {
+      "status": "firing",
+      "labels": {
+        "alertname": "sample_error",
+        "category": "pushgateway",
+        "channel": "sample",
+        "environment": "hoge-env",
+        "exported_instance": "TEST_INSTANCE",
+        "exported_job": "sample_exporter",
+        "instance": "localhost:9091",
+        "job": "pushgateway",
+        "severity": "critical"
+      },
+      "annotations": {
+        "resolved_text": "SAMPLE is OK.",
+        "summary": "SAMPLE is NG."
+      },
+      "startsAt": "2017-12-10T23:20:08.822+09:00",
+      "endsAt": "0001-01-01T00:00:00Z",
+      "generatorURL": "http://localhost/prometheus/graph?XXXXXXXXXXXXXXXX"
+    }
+  ],
+  "groupLabels": {
+    "alertname": "sample_error",
+    "channel": "sample",
+    "instance": "localhost:9091",
+    "job": "pushgateway"
+  },
+  "commonLabels": {
+    "alertname": "sample_error",
+    "category": "pushgateway",
+    "channel": "sample",
+    "environment": "hoge-env",
+    "exported_instance": "TEST_INSTANCE",
+    "exported_job": "sample_exporter",
+    "instance": "localhost:9091",
+    "job": "pushgateway",
+    "severity": "critical"
+  },
+  "commonAnnotations": {
+    "resolved_text": "SAMPLE is OK.",
+    "summary": "SAMPLE is NG."
+  },
+  "externalURL": "/alertmanager",
+  "version": "3",
+  "groupKey": "000000000000000000"
+}

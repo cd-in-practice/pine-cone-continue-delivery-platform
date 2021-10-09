@@ -15,6 +15,7 @@
         <module>cdp-mock-impl</module>
         <module>web</module>
         <module>spring-ioc-impl</module>
+        <module>cdp-alert-server</module>
     </modules>
     <packaging>pom</packaging>
     <description>ContinueDeliveryPlatform</description>
