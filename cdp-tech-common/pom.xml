@@ -11,6 +11,12 @@
 
     <artifactId>cdp-tech-common</artifactId>
     <name>cdp-tech-common</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

@@ -24,6 +24,16 @@
             <groupId>io.ebean</groupId>
             <artifactId>ebean-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.reflectoring.diffparser</groupId>
+            <artifactId>diffparser</artifactId>
+            <version>1.4</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>

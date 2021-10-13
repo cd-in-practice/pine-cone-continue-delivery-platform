@@ -14,7 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
-            <artifactId>cdp-mock-impl</artifactId>
+            <artifactId>cdp-code-analysis-domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>codes.showme.pinecone</groupId>
+            <artifactId>cdp-rocketmq-repository</artifactId>
         </dependency>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>

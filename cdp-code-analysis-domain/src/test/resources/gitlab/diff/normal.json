@@ -1,0 +1,10 @@
+{
+  "deletedFile" : false,
+  "diff" : "@@ -340,7 +340,7 @@ public class DeviceManagerClient {\n      * @param code\n      * @return\n      */\n-    @Cacheable(value = CacheName_FirmwareHasFeature, key = \"#firmwareVer + #code\")\n+//    @Cacheable(value = CacheName_FirmwareHasFeature, key = \"#firmwareVer + #code\")\n     public boolean firmwareHasFeature(String mid, String firmwareVer, String code){\n         final BoolValue exist = devMng2BlockingStub.firmwareHasFeature(AiDeviceManager2.FirmwareHasFeatureReq.newBuilder()\n                 .setMid(mid)\n",
+  "newFile" : false,
+  "newPath" : "midea-aiskill-manager/src/main/java/com/midea/aicloud/skill/infra/rpc/DeviceManagerClient.java",
+  "oldPath" : "midea-aiskill-manager/src/main/java/com/midea/aicloud/skill/infra/rpc/DeviceManagerClient.java",
+  "renamedFile" : false,
+  "a_mode" : "100644",
+  "b_mode" : "100644"
+}

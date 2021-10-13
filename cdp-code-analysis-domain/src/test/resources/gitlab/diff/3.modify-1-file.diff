@@ -1,0 +1,13 @@
+--- a/a.txt
++++ b/a.txt
+@@ -1,5 +1,8 @@
+ a
+ c
++1
+ d
++2
+ f
+-g
+\ No newline at end of file
++g
++3
