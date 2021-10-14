@@ -27,9 +27,11 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <ebean.version>12.8.2</ebean.version>
+        <notion-sdk.version>0.1.12</notion-sdk.version>
         <testcontainers.version>1.15.3</testcontainers.version>
     </properties>
     <build>
+        <finalName>app</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -123,6 +125,7 @@
                 <artifactId>javax.annotation-api</artifactId>
                 <version>1.3.2</version>
             </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -159,6 +162,13 @@
                 <artifactId>grpc-spring-boot-starter</artifactId>
                 <version>4.5.5</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.seratch</groupId>
+                <artifactId>notion-sdk-jvm-core</artifactId>
+                <version>${notion-sdk.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
