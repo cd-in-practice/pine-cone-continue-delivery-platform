@@ -20,6 +20,7 @@
         <module>postgres-repository</module>
         <module>cdp-rocketmq-repository</module>
         <module>cdp-tech-common-impl</module>
+        <module>cdp-alert-server</module>
     </modules>
     <packaging>pom</packaging>
     <description>ContinueDeliveryPlatform</description>
