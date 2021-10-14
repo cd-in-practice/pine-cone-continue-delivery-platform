@@ -6,6 +6,7 @@ import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
@@ -13,6 +14,7 @@ import org.testcontainers.utility.DockerImageName;
 public class SyncTest {
 
     @Test
+    @Ignore
     public void TestSyncFromGitLab() {
 
         try (PostgreSQLContainer db = new PostgreSQLContainer(DockerImageName.parse("postgres:12.8"))

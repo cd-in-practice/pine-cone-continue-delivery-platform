@@ -1,6 +1,7 @@
 package codes.showme.pinecone.cdp.code.analysis.gitlab;
 
 import org.gitlab4j.api.models.Diff;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -31,22 +32,19 @@ public class GitLabDiffWrapperTest {
                 "+}");
         diff.setAMode("100644");
         diff.setBMode("100644");
-        diff.setDeletedFile(true);
+        diff.setDeletedFile(false);
         diff.setNewFile(false);
         diff.setNewPath("cdp/src/main/java/codes/showme/T.java");
         diff.setOldPath("cdp/src/main/java/codes/showme/T.java");
         diff.setRenamedFile(false);
         codes.showme.pinecone.cdp.domain.commit.Diff diff1 = gitLabDiffWrapper.buildDiffObj(diff);
         assertEquals("commit-id", diff1.getCommitId());
+        assertEquals(2, diff1.getDeletedLines());
+        assertEquals(6, diff1.getAddedLines());
         assertEquals(2, diff1.getChangedLines());
-        assertEquals(3, diff1.getDeletedLines());
-        assertEquals(4, diff1.getAddedLines());
 
 
 
     }
 
-    @Test
-    public void testBuildDiffObj() {
-    }
 }

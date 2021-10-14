@@ -103,8 +103,8 @@ public class Diff {
                         }).collect(Collectors.joining(""));
 
                 this.changedLines += calculateChangedLines(lineTypesStr);
-                this.deletedLines += (fromCount - getChangedLines());
-                this.addedLines += (toCount - getChangedLines());
+                this.deletedLines += (fromCount - this.changedLines);
+                this.addedLines += (toCount - this.changedLines);
             }
         }
     }

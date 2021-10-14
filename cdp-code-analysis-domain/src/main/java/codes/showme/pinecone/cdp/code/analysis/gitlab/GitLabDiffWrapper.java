@@ -30,7 +30,7 @@ public class GitLabDiffWrapper {
         String diffContent = null;
         try {
             diffContent = buildDiffContent(diff);
-
+            result.setDiffContent(diffContent);
             result.setNewPath(diff.getNewPath());
             result.setOldPath(diff.getOldPath());
             result.setRenamedFile(diff.getRenamedFile());
