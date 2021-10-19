@@ -12,7 +12,7 @@ public class SyncGitlabDiffEvent {
     private Commit commit;
 
     public SyncGitlabDiffEvent(Commit commit) {
-        commit = commit;
+        this.commit = commit;
     }
 
     public Commit getCommit() {
