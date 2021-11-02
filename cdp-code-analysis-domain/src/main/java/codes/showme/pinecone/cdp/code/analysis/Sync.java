@@ -12,10 +12,12 @@ import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Diff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.*;
 
+@Component
 public class Sync {
 
     private static final Logger log = LoggerFactory.getLogger(Sync.class);
@@ -57,6 +59,7 @@ public class Sync {
             while (commits.hasNext()) {
                 List<Commit> commitList = commits.next();
                 for (Commit commit : commitList) {
+
                     commitRepository.save(buildBy(commit));
                 }
             }

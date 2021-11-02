@@ -31,10 +31,6 @@
             <artifactId>cdp-tech-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>codes.showme.pinecone</groupId>
-            <artifactId>postgres-repository</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.gitlab4j</groupId>
             <artifactId>gitlab4j-api</artifactId>
         </dependency>
@@ -44,11 +40,7 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.5</version>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -21,10 +21,35 @@ spring:
     encoding: UTF-8
     suffix: .html
     check-template-location: true
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password: abcd1234
+    url: jdbc:mysql://127.0.0.1:3306/cdp?useSSL=false&serverTimezone=UTC
+
+
 #
 #logging:
 #  level:
 #
 
+ebean:
+  db:
+    ddl:
+      generate: false
+      run: true
+    username: root
+    password: abcd1234
+    url: jdbc:mysql://127.0.0.1:3306/cdp?useSSL=false&serverTimezone=UTC
 
 
+
+
+datasource:
+  default: db
+  db:
+    databaseDriver: com.mysql.cj.jdbc.Driver
+    databaseUrl: jdbc:mysql://127.0.0.1:3307/cdp?useSSL=false&serverTimezone=UTC
+    password: abcd1234
+    updatesDeleteMissingChildren: true
+    username: root

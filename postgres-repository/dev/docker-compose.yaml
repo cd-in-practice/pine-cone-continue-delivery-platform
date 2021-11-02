@@ -11,7 +11,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 123456
   adminer:
-    image: adminer
+    image: adminer:4
     restart: always
     ports:
       - 8080:8080

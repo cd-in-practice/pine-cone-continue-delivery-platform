@@ -21,10 +21,15 @@ public class SyncTest {
                 .withDatabaseName("db")) {
             db.start();
             DataSourceConfig dataSourceConfig = new DataSourceConfig();
-            dataSourceConfig.setUrl(db.getJdbcUrl())
-                    .setPlatform("postgres")
-                    .setUsername(db.getUsername())
-                    .setPassword(db.getPassword());
+            String jdbc = "jdbc:postgresql://172.18.8.101:30002/cdp";
+            String jdbcUrl = db.getJdbcUrl();
+            String username = db.getUsername();
+            String password = db.getPassword();
+            dataSourceConfig.setUrl(jdbc)
+                    .setSchema("public")
+                    .setPlatform("cdp")
+                    .setUsername("cdp")
+                    .setPassword("cdp");
 
             DatabaseConfig config = new DatabaseConfig();
             config.setDefaultServer(true);

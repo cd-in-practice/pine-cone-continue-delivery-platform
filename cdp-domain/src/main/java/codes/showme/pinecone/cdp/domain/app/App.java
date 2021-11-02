@@ -4,6 +4,7 @@ import codes.showme.pinecone.cdp.domain.app.repository.AppRepository;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,6 +39,9 @@ public class App implements Serializable {
     }
 
     public static Pagination<App> listByNamespace(String namespace, PageRequest pageRequest) {
+        if (StringUtils.isEmpty(namespace)) {
+            return Pagination.empty();
+        }
         AppRepository appRepository = InstanceFactory.getInstance(AppRepository.class);
         return appRepository.listByNamespace(namespace, pageRequest);
     }

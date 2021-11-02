@@ -13,11 +13,11 @@
     <dependencies>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
-            <artifactId>cdp-mock-impl</artifactId>
+            <artifactId>cdp-tech-common</artifactId>
         </dependency>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
-            <artifactId>cdp-tech-common</artifactId>
+            <artifactId>mysql-repository</artifactId>
         </dependency>
         <dependency>
             <groupId>codes.showme.pinecone</groupId>
@@ -38,6 +38,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>codes.showme.pinecone</groupId>
+            <artifactId>cdp-code-analysis-domain</artifactId>
         </dependency>
     </dependencies>
     <build>
