@@ -1,5 +1,3 @@
-CREATE DATABASE cdp;
-
 -- 记录 repo
 CREATE TABLE cdp_repo(
 id INT PRIMARY KEY     NOT NULL,
@@ -108,8 +106,5 @@ day_of_the_week int,
 create_time timestamp,
 update_time timestamp
 );
-
-
-
 
 

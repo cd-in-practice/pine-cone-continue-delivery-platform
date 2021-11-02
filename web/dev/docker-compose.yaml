@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:cdp-1.0
+    container_name: mysql-cdp
+    build: ./mysql
+    volumes:
+      - /data/mysql/data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d/
+      - ./mysql/sql:/opt/sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=abcd1234
+    ports:
+      - "3307:3306"
+    restart: always
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
