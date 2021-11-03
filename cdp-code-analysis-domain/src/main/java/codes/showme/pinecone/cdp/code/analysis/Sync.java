@@ -1,9 +1,9 @@
 package codes.showme.pinecone.cdp.code.analysis;
 
+import codes.showme.pinecone.cdp.code.analysis.gitlab.GitLabDiffWrapper;
 import codes.showme.pinecone.cdp.domain.commit.repository.CommitRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.FileHistoryRepository;
-import codes.showme.pinecone.cdp.code.analysis.gitlab.GitLabDiffWrapper;
 import org.gitlab4j.api.CommitsApi;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
@@ -12,12 +12,11 @@ import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Diff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-@Component
 public class Sync {
 
     private static final Logger log = LoggerFactory.getLogger(Sync.class);
@@ -45,7 +44,6 @@ public class Sync {
             } else {
                 log.error("syncDiffs error,commitId:{}", commitId);
             }
-
         } catch (GitLabApiException e) {
             log.error("syncDiffs error", e);
         }
