@@ -2,12 +2,11 @@ package codes.showme.pinecone.cdp.domain.mq.repository;
 
 import code.showme.pinecone.cdp.event.CdpEventOuterClass;
 import codes.showme.pinecone.cdp.code.analysis.gitlab.GitLabCommitEventProcessor;
-import codes.showme.pinecone.cdp.code.analysis.gitlab.SyncGitLabCommitsEvent;
+import codes.showme.pinecone.cdp.code.analysis.domain.SyncGitLabCommitsEvent;
 import codes.showme.pinecone.cdp.code.analysis.repository.SyncGitLabCommitsEventRepository;
 import codes.showme.pinecone.cdp.domain.mq.config.RocketMqConfigure;
 import codes.showme.pinecone.cdp.techcommon.JsonService;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
-import org.apache.rocketmq.client.consumer.DefaultMQPullConsumer;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;

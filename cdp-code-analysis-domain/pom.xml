@@ -35,6 +35,10 @@
             <artifactId>gitlab4j-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>codes.showme.pinecone</groupId>
+            <artifactId>spring-ioc-impl</artifactId>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>

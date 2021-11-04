@@ -1,5 +1,6 @@
 package codes.showme.pinecone.cdp.code.analysis.gitlab;
 
+import codes.showme.pinecone.cdp.code.analysis.domain.SyncGitLabCommitsEvent;
 import codes.showme.pinecone.cdp.domain.commit.repository.CommitRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.FileHistoryRepository;

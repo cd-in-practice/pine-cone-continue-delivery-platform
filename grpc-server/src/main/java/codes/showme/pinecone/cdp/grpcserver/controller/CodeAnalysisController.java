@@ -2,7 +2,7 @@ package codes.showme.pinecone.cdp.grpcserver.controller;
 
 import code.showme.pinecone.cdp.code.CodeAnalysisGrpc;
 import code.showme.pinecone.cdp.code.CodeAnalysisOuterClass;
-import codes.showme.pinecone.cdp.code.analysis.gitlab.SyncGitLabCommitsEvent;
+import codes.showme.pinecone.cdp.code.analysis.domain.SyncGitLabCommitsEvent;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 

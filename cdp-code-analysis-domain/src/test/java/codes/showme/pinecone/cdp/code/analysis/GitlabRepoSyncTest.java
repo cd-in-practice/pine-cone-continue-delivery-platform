@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-public class SyncTest {
+public class GitlabRepoSyncTest {
 
     @Test
     @Ignore
@@ -46,10 +46,10 @@ public class SyncTest {
 
 
             String token = System.getenv("GITLAB_TOKEN");
-            Sync sync = new Sync();
-            sync.setDiffRepository(diffRepositoryPostgresRepository);
-            sync.setCommitRepository(commitRepository);
-            sync.syncCommits("https://gitlab.com", "zacker330/git-diff-example", token, "default");
+            GitlabRepoSync gitlabRepoSync = new GitlabRepoSync();
+            gitlabRepoSync.setDiffRepository(diffRepositoryPostgresRepository);
+            gitlabRepoSync.setCommitRepository(commitRepository);
+            gitlabRepoSync.syncCommits("https://gitlab.com", "zacker330/git-diff-example", token, "default");
 
         }
     }

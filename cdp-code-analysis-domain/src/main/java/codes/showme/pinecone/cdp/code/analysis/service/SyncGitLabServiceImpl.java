@@ -1,6 +1,8 @@
-package codes.showme.pinecone.cdp.code.analysis;
+package codes.showme.pinecone.cdp.code.analysis.service;
 
 import codes.showme.pinecone.cdp.code.analysis.gitlab.GitLabDiffWrapper;
+import codes.showme.pinecone.cdp.code.analysis.domain.SyncGitLabCommitsEvent;
+import codes.showme.pinecone.cdp.code.analysis.gitlab.SyncGitlabDiffEvent;
 import codes.showme.pinecone.cdp.domain.commit.repository.CommitRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.FileHistoryRepository;
@@ -12,14 +14,17 @@ import org.gitlab4j.api.models.Commit;
 import org.gitlab4j.api.models.Diff;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
-public class Sync {
+@Component
+public class SyncGitLabServiceImpl implements SyncGitLabService {
 
-    private static final Logger log = LoggerFactory.getLogger(Sync.class);
+    private static final Logger log = LoggerFactory.getLogger(SyncGitLabServiceImpl.class);
 
     public static final int pageSize = 10;
 
@@ -31,6 +36,11 @@ public class Sync {
 
     @Resource
     public FileHistoryRepository fileHistoryRepository;
+
+    @Override
+    public void sync(SyncGitLabRepoReq req, String namespace) {
+        syncCommitsAndDiffs(req.getGitLabServerUrl(), req.getGitlabProjectObject(), req.getToken(), namespace);
+    }
 
 
     public void syncDiffs(String commitId, String gitLabServerUrl, Object gitlabProjectObject, String token, String namespace) {
@@ -49,22 +59,27 @@ public class Sync {
         }
     }
 
-    public void syncCommits(String gitLabServerUrl, Object gitlabProjectObject, String token, String namespace) {
+    public void syncCommitsAndDiffs(String gitLabServerUrl, Object gitlabProjectObject, String token, String namespace) {
         try {
             GitLabApi gitLabApi = getGitLabApi(gitLabServerUrl, token);
             CommitsApi commitsApi = gitLabApi.getCommitsApi();
             Pager<Commit> commits = commitsApi.getCommits(gitlabProjectObject, pageSize);
+
             while (commits.hasNext()) {
                 List<Commit> commitList = commits.next();
-                for (Commit commit : commitList) {
-
-                    commitRepository.save(buildBy(commit));
+                if (!Objects.isNull(commitList)) {
+                    for (Commit commit : commitList) {
+                        codes.showme.pinecone.cdp.domain.commit.Commit buildBy = buildBy(commit);
+                        new SyncGitLabCommitsEvent(buildBy).fire();
+                        new SyncGitlabDiffEvent(buildBy).fire();
+                    }
                 }
             }
         } catch (GitLabApiException e) {
             log.error("syncCommits error", e);
         }
     }
+
 
     private GitLabApi getGitLabApi(String gitLabServerUrl, String token) {
         GitLabApi gitLabApi = new GitLabApi(gitLabServerUrl, token);
