@@ -1,5 +1,7 @@
 package codes.showme.pinecone.cdp.domain.commit;
 
+import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepository;
+import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import io.reflectoring.diffparser.api.UnifiedDiffParser;
 import io.reflectoring.diffparser.api.model.Hunk;
 import io.reflectoring.diffparser.api.model.Line;
@@ -8,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
@@ -20,7 +23,9 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "cdp_diffs")
 public class Diff {
+    @Id
     private String id;
+
     @Column(name = "commit_id")
     private String commitId;
     @Column(name = "repo_id")
@@ -116,6 +121,11 @@ public class Diff {
             count++;
         }
         return count;
+    }
+
+    public static void saveAll(List<Diff> diffs) {
+        DiffRepository diffRepository = InstanceFactory.getInstance(DiffRepository.class);
+        diffRepository.save(diffs);
     }
 
     public String getId() {
@@ -276,4 +286,6 @@ public class Diff {
                 ", updateTime=" + updateTime +
                 '}';
     }
+
+
 }

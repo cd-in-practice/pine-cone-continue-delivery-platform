@@ -17,9 +17,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Component
 public class SyncGitLabServiceImpl implements SyncGitLabService {
@@ -64,20 +66,36 @@ public class SyncGitLabServiceImpl implements SyncGitLabService {
             GitLabApi gitLabApi = getGitLabApi(gitLabServerUrl, token);
             CommitsApi commitsApi = gitLabApi.getCommitsApi();
             Pager<Commit> commits = commitsApi.getCommits(gitlabProjectObject, pageSize);
-
             while (commits.hasNext()) {
                 List<Commit> commitList = commits.next();
                 if (!Objects.isNull(commitList)) {
                     for (Commit commit : commitList) {
-                        codes.showme.pinecone.cdp.domain.commit.Commit buildBy = buildBy(commit);
-                        new SyncGitLabCommitsEvent(buildBy).fire();
-                        new SyncGitlabDiffEvent(buildBy).fire();
+                        codes.showme.pinecone.cdp.domain.commit.Commit gitlabCommit = buildBy(commit);
+                        gitlabCommit.save();
+                        List<Diff> diffs = commitsApi.getDiff(gitlabProjectObject, commit.getId());
+                        diffRepository.save(buildBy(diffs, commit.getId(), namespace, gitlabProjectObject.toString()));
                     }
                 }
             }
         } catch (GitLabApiException e) {
             log.error("syncCommits error", e);
         }
+    }
+
+    private List<codes.showme.pinecone.cdp.domain.commit.Diff> buildBy(List<Diff> diffs, String commitId, String namespace, String repoId) {
+        if (Objects.isNull(diffs) || diffs.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        return diffs.stream().map(gitlabDiff -> {
+            codes.showme.pinecone.cdp.domain.commit.Diff diff = new codes.showme.pinecone.cdp.domain.commit.Diff();
+            diff.setDiffContent(gitlabDiff.getDiff());
+            diff.setCommitId(commitId);
+            diff.setNamespace(namespace);
+            diff.setRepoId(repoId);
+            diff.analysis();
+            return diff;
+        }).collect(Collectors.toList());
     }
 
 

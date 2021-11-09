@@ -5,6 +5,7 @@ import io.ebean.Database;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Component
 public class CommitPostgresRepository implements CommitRepository {
@@ -14,6 +15,11 @@ public class CommitPostgresRepository implements CommitRepository {
     @Override
     public void save(Commit commit) {
         database.save(commit);
+    }
+
+    @Override
+    public void saveAll(List<Commit> commits) {
+        database.saveAll(commits);
     }
 
     public void setDatabase(Database database) {

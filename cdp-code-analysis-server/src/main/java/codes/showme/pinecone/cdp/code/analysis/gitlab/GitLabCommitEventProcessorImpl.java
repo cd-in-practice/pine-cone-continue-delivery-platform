@@ -35,19 +35,19 @@ public class GitLabCommitEventProcessorImpl implements GitLabCommitEventProcesso
 
     @Override
     public void process(SyncGitLabCommitsEvent gitLabCommitsEvent) {
-        try {
-            GitLabApi gitLabApi = getGitLabApi(gitLabCommitsEvent.getGitlabServerUrl(), gitLabCommitsEvent.getToken());
-            CommitsApi commitsApi = gitLabApi.getCommitsApi();
-            Pager<Commit> commits = commitsApi.getCommits(gitLabCommitsEvent.getGitlabProject(), pageSize);
-            while (commits.hasNext()) {
-                List<Commit> commitList = commits.next();
-                for (Commit commit : commitList) {
-                    commitRepository.save(buildBy(commit));
-                }
-            }
-        } catch (GitLabApiException e) {
-            log.error("syncCommits error", e);
-        }
+//        try {
+//            GitLabApi gitLabApi = getGitLabApi(gitLabCommitsEvent.getGitlabServerUrl(), gitLabCommitsEvent.getToken());
+//            CommitsApi commitsApi = gitLabApi.getCommitsApi();
+//            Pager<Commit> commits = commitsApi.getCommits(gitLabCommitsEvent.getGitlabProject(), pageSize);
+//            while (commits.hasNext()) {
+//                List<Commit> commitList = commits.next();
+//                for (Commit commit : commitList) {
+//                    commitRepository.save(buildBy(commit));
+//                }
+//            }
+//        } catch (GitLabApiException e) {
+//            log.error("syncCommits error", e);
+//        }
     }
 
     private GitLabApi getGitLabApi(String gitLabServerUrl, String token) {

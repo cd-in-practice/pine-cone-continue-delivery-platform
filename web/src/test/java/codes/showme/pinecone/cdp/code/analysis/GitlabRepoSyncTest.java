@@ -1,7 +1,6 @@
 package codes.showme.pinecone.cdp.code.analysis;
 
-import codes.showme.pinecone.cdp.domain.commit.repository.CommitPostgresRepository;
-import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepositoryPostgresRepository;
+import codes.showme.pinecone.cdp.code.analysis.GitlabRepoSync;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
@@ -38,18 +37,18 @@ public class GitlabRepoSyncTest {
             config.loadFromProperties();
             config.setDataSourceConfig(dataSourceConfig);
             Database database = DatabaseFactory.create(config);
-            CommitPostgresRepository commitRepository = new CommitPostgresRepository();
-            commitRepository.setDatabase(database);
-
-            DiffRepositoryPostgresRepository diffRepositoryPostgresRepository = new DiffRepositoryPostgresRepository();
-            diffRepositoryPostgresRepository.setDatabase(database);
-
-
-            String token = System.getenv("GITLAB_TOKEN");
-            GitlabRepoSync gitlabRepoSync = new GitlabRepoSync();
-            gitlabRepoSync.setDiffRepository(diffRepositoryPostgresRepository);
-            gitlabRepoSync.setCommitRepository(commitRepository);
-            gitlabRepoSync.syncCommits("https://gitlab.com", "zacker330/git-diff-example", token, "default");
+//            CommitPostgresRepository commitRepository = new CommitPostgresRepository();
+//            commitRepository.setDatabase(database);
+//
+//            DiffRepositoryPostgresRepository diffRepositoryPostgresRepository = new DiffRepositoryPostgresRepository();
+//            diffRepositoryPostgresRepository.setDatabase(database);
+//
+//
+//            String token = System.getenv("GITLAB_TOKEN");
+//            GitlabRepoSync gitlabRepoSync = new GitlabRepoSync();
+//            gitlabRepoSync.setDiffRepository(diffRepositoryPostgresRepository);
+//            gitlabRepoSync.setCommitRepository(commitRepository);
+//            gitlabRepoSync.syncCommits("https://gitlab.com", "zacker330/git-diff-example", token, "default");
 
         }
     }

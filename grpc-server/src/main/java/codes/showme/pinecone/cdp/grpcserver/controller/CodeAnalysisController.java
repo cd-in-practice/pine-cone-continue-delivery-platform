@@ -13,8 +13,8 @@ public class CodeAnalysisController extends CodeAnalysisGrpc.CodeAnalysisImplBas
     public void syncGitLabCommits(CodeAnalysisOuterClass.SyncGitLabCommitsRequest request, StreamObserver<CodeAnalysisOuterClass.SyncGitLabCommitsReply> responseObserver) {
 
         try {
-            SyncGitLabCommitsEvent event = new SyncGitLabCommitsEvent(request.getNamespace(), request.getGitlabServerUrl(), request.getGitlabProject(), request.getToken());
-            event.save();
+//            SyncGitLabCommitsEvent event = new SyncGitLabCommitsEvent(request.getNamespace(), request.getGitlabServerUrl(), request.getGitlabProject(), request.getToken());
+//            event.save();
             responseObserver.onNext(CodeAnalysisOuterClass.SyncGitLabCommitsReply.newBuilder().setReceived(true).build());
             responseObserver.onCompleted();
         }catch (Exception e){

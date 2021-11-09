@@ -29,6 +29,8 @@ public class CodeApiController {
     @GetMapping("/sync-task")
     public List<SyncGitLabRepoTask> listSyncTasks(@RequestParam(name = "p", defaultValue = "1") int pageIndex,
                                                   @RequestParam(name = "namespace", required = false) String namespace) {
+
+
         return new ArrayList<>();
     }
 

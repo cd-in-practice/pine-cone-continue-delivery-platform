@@ -55,7 +55,7 @@ public class SyncGitLabRepoTask implements Serializable {
             gitLabRepoInfo = new GitLabRepoInfo(repoUrl, token);
             gitLabRepoInfo.save();
         }
-        new SyncGitLabCommitsEvent(gitLabRepoInfo.getId(), gitLabRepoInfo.getGitRepoUrl(), gitLabRepoInfo.getToken()).fire();
+//        new SyncGitLabCommitsEvent(gitLabRepoInfo.getId(), gitLabRepoInfo.getGitRepoUrl(), gitLabRepoInfo.getToken()).fire();
     }
 
     private boolean existsGitLabRepoId() {
