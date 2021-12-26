@@ -1,0 +1,105 @@
+load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+
+proto_library(
+    name = "cdp_event_proto",
+    srcs = ["src/main/proto/cdpEvent.proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_proto_library(
+    name = "cdp_event_java_proto",
+    protos = ["//cdp-pb:cdp_event_proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_grpc_library(
+    name = "cdp_event_java_grpc",
+    protos = ["//cdp-pb:cdp_event_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "code_analysis_proto",
+    srcs = ["src/main/proto/codeAnalysis.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+java_proto_library(
+    name = "code_analysis_java_proto",
+    protos = ["//cdp-pb:code_analysis_proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_grpc_library(
+    name = "code_analysis_java_grpc",
+    protos = ["//cdp-pb:code_analysis_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "docker_image_artifact_proto",
+    srcs = ["src/main/proto/dockerImageArtifact.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+java_proto_library(
+    name = "docker_image_artifact_java_proto",
+    protos = ["//cdp-pb:docker_image_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_grpc_library(
+    name = "docker_image_artifact_java_grpc",
+    protos = ["//cdp-pb:docker_image_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "java_artifact_proto",
+    srcs = ["src/main/proto/javaArtifact.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+java_proto_library(
+    name = "java_artifact_java_proto",
+    protos = [":java_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_grpc_library(
+    name = "java_artifact_java_grpc",
+    protos = [":java_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "tar_artifact_proto",
+    srcs = ["src/main/proto/tarArtifact.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@com_google_protobuf//:empty_proto",
+    ],
+)
+
+java_proto_library(
+    name = "tar_artifact_java_proto",
+    protos = [":tar_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
+
+java_grpc_library(
+    name = "tar_artifact_java_grpc",
+    protos = [":tar_artifact_proto"],
+    visibility = ["//visibility:public"],
+)
