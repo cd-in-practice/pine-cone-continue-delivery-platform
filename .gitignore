@@ -5,6 +5,18 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### bazel
+/bazel-bin
+/bazel-ci_build-cache
+/bazel-genfiles
+/bazel-out
+/bazel-tensorflow
+/bazel-testlogs
+/bazel-tf
+/bazel-pine-cone-continue-delivery-platform
+.vagrant
+
+
 ### STS ###
 .apt_generated
 .classpath
