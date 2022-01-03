@@ -26,6 +26,7 @@ public class DiffTest {
         diff.setDeletedFile(false);
         diff.setRenamedFile(false);
         diff.analysis();
+        assertEquals(66, diff.getDiffBytesLength());
         assertEquals(1, diff.getDeletedLines());
         assertEquals(0, diff.getChangedLines());
         assertEquals(1, diff.getAddedLines());
@@ -39,6 +40,7 @@ public class DiffTest {
         diff.setDeletedFile(false);
         diff.setRenamedFile(true);
         diff.analysis();
+        assertEquals(0, diff.getDiffBytesLength());
         assertEquals(0, diff.getAddedLines());
         assertEquals(0, diff.getDeletedLines());
         assertEquals(0, diff.getChangedLines());
@@ -66,6 +68,7 @@ public class DiffTest {
         diff.setDeletedFile(false);
         diff.setRenamedFile(false);
         diff.analysis();
+        assertEquals(83, diff.getDiffBytesLength());
         assertEquals(1, diff.getDeletedLines());
         assertEquals(2, diff.getChangedLines());
         assertEquals(2, diff.getAddedLines());
@@ -89,6 +92,7 @@ public class DiffTest {
         diff.setDeletedFile(false);
         diff.setRenamedFile(false);
         diff.analysis();
+        assertEquals(75, diff.getDiffBytesLength());
         assertEquals(0, diff.getAddedLines());
         assertEquals(0, diff.getDeletedLines());
         assertEquals(1, diff.getChangedLines());
@@ -108,7 +112,7 @@ public class DiffTest {
         diff.setDeletedFile(true);
         diff.setRenamedFile(false);
         diff.analysis();
-
+        assertEquals(56, diff.getDiffBytesLength());
         assertEquals(0, diff.getAddedLines());
         assertEquals(4, diff.getDeletedLines());
         assertEquals(0, diff.getChangedLines());
@@ -135,6 +139,7 @@ public class DiffTest {
         diff.setRenamedFile(false);
         diff.analysis();
         assertEquals(7, diff.getAddedLines());
+        assertEquals(90, diff.getDiffBytesLength());
         assertEquals(0, diff.getDeletedLines());
         assertEquals(0, diff.getChangedLines());
     }

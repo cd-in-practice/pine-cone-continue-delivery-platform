@@ -35,6 +35,7 @@ public class CodeApiController {
     }
 
     @PostMapping("/sync-gitlab")
+    @Async
     public void syncGitLabRepo(@RequestBody SyncGitLabService.SyncGitLabRepoReq req, @RequestParam(name = "namespace", required = false) String namespace) {
         syncGitLabService.sync(req, namespace);
     }

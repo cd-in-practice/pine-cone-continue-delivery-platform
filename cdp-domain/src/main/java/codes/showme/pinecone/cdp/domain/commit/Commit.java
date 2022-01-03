@@ -13,22 +13,23 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Entity
-@Table(name = "cdp_commits")
+@Table(name = "cdp_repo_commits")
 public class Commit {
     @Id
+    @Column(name = "id", length = 64)
     private String id;
 
     @Column(name = "short_id", length = 16)
     private String shortId;
 
-    @Column(name = "repo_id")
+    @Column(name = "repo_id", length = 64)
     private String repoId;
 
     @Column(name = "namespace", length = 32)
     private String namespace;
 
-    @Column(name = "json_src", columnDefinition = "jsonb")
-    @DbJson(name = "json_src")
+    @Column(name = "json_src", columnDefinition = "text")
+//    @DbJson(name = "json_src")
     private String jsonSrc;
 
     @Column(name = "author_id")
@@ -218,5 +219,29 @@ public class Commit {
         return commitAt;
     }
 
-
+    @Override
+    public String toString() {
+        return "Commit{" +
+                "id='" + id + '\'' +
+                ", shortId='" + shortId + '\'' +
+                ", repoId='" + repoId + '\'' +
+                ", namespace='" + namespace + '\'' +
+                ", jsonSrc='" + jsonSrc + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", addedLines=" + addedLines +
+                ", deletedLines=" + deletedLines +
+                ", changedLines=" + changedLines +
+                ", message='" + message + '\'' +
+                ", title='" + title + '\'' +
+                ", commitAt=" + commitAt +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", year=" + year +
+                ", month=" + month +
+                ", date=" + date +
+                ", hour=" + hour +
+                ", dayOfWeek=" + dayOfWeek +
+                ", zoneId='" + zoneId + '\'' +
+                '}';
+    }
 }

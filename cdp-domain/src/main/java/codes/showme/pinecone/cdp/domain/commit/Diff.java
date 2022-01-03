@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -23,12 +22,15 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "cdp_diffs")
 public class Diff {
+    public static final int DIFF_CONENT_SAFE_BYTES_LENGTH = 65532;
     @Id
+    @Column(name = "id", length = 64)
     private String id;
 
-    @Column(name = "commit_id")
+    @Column(name = "commit_id", length = 64)
     private String commitId;
-    @Column(name = "repo_id")
+
+    @Column(name = "repo_id", length = 64)
     private String repoId;
 
     @Column(name = "namespace", length = 32)
@@ -39,17 +41,18 @@ public class Diff {
 
     @Column(name = "deleted_file")
     private boolean deletedFile;
+
     @Column(name = "new_file")
     private boolean newFile;
     @Column(name = "renamed_file")
     private boolean renamedFile;
-    @Column(name = "new_path", columnDefinition = "text")
+    @Column(name = "new_path", length = 128)
     private String newPath;
-    @Column(name = "old_path", columnDefinition = "text")
+    @Column(name = "old_path", length = 128)
     private String oldPath;
-    @Column(name = "a_mode")
+    @Column(name = "a_mode", length = 8)
     private String aMode;
-    @Column(name = "b_mode")
+    @Column(name = "b_mode", length = 8)
     private String bMode;
 
     @Column(name = "added_lines")
@@ -65,6 +68,9 @@ public class Diff {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @Column(name = "diff_bytes")
+    private long diffBytesLength;
+
     private static final Pattern CHANGED_LINE_PATTERN = Pattern.compile("-\\+");
 
     public void analysis() {
@@ -73,6 +79,19 @@ public class Diff {
             return;
         }
 
+        analysisLines();
+
+        makeSureDiffContentSizeSafe();
+    }
+
+    private void makeSureDiffContentSizeSafe() {
+        this.diffBytesLength = diffContent.getBytes().length;
+        if (diffBytesLength > DIFF_CONENT_SAFE_BYTES_LENGTH) {
+            diffContent = "";
+        }
+    }
+
+    private void analysisLines() {
         List<io.reflectoring.diffparser.api.model.Diff> diffList =
                 new UnifiedDiffParser().parse(diffContent.getBytes(StandardCharsets.UTF_8));
         for (io.reflectoring.diffparser.api.model.Diff reflectorDiff : diffList) {
@@ -287,5 +306,11 @@ public class Diff {
                 '}';
     }
 
+    public long getDiffBytesLength() {
+        return diffBytesLength;
+    }
 
+    public void setDiffBytesLength(long diffBytesLength) {
+        this.diffBytesLength = diffBytesLength;
+    }
 }

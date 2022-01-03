@@ -42,6 +42,7 @@ public class DdlGenerate {
 
             TarArtifact artifact = new TarArtifact();
             artifact.setUrl("url");
+            artifact.setId("abc");
             database.save(artifact);
 
         }

@@ -29,7 +29,11 @@ public class GitLabDiffWrapper {
         result.setbMode(diff.getBMode());
         String diffContent = null;
         try {
+            int diffBytesLength = diff.getDiff().getBytes().length;
+            result.setDiffBytesLength(diffBytesLength);
             diffContent = buildDiffContent(diff);
+            result.setDiffBytesLength(diffContent.getBytes().length);
+
             result.setDiffContent(diffContent);
             result.setNewPath(diff.getNewPath());
             result.setOldPath(diff.getOldPath());

@@ -6,6 +6,7 @@ import codes.showme.pinecone.cdp.code.analysis.gitlab.SyncGitlabDiffEvent;
 import codes.showme.pinecone.cdp.domain.commit.repository.CommitRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.DiffRepository;
 import codes.showme.pinecone.cdp.domain.commit.repository.FileHistoryRepository;
+import org.apache.commons.lang3.RandomUtils;
 import org.gitlab4j.api.CommitsApi;
 import org.gitlab4j.api.GitLabApi;
 import org.gitlab4j.api.GitLabApiException;
@@ -17,10 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
@@ -70,7 +68,7 @@ public class SyncGitLabServiceImpl implements SyncGitLabService {
                 List<Commit> commitList = commits.next();
                 if (!Objects.isNull(commitList)) {
                     for (Commit commit : commitList) {
-                        codes.showme.pinecone.cdp.domain.commit.Commit gitlabCommit = buildBy(commit);
+                        codes.showme.pinecone.cdp.domain.commit.Commit gitlabCommit = buildBy(commit, namespace);
                         gitlabCommit.save();
                         List<Diff> diffs = commitsApi.getDiff(gitlabProjectObject, commit.getId());
                         diffRepository.save(buildBy(diffs, commit.getId(), namespace, gitlabProjectObject.toString()));
@@ -88,12 +86,9 @@ public class SyncGitLabServiceImpl implements SyncGitLabService {
         }
 
         return diffs.stream().map(gitlabDiff -> {
-            codes.showme.pinecone.cdp.domain.commit.Diff diff = new codes.showme.pinecone.cdp.domain.commit.Diff();
-            diff.setDiffContent(gitlabDiff.getDiff());
-            diff.setCommitId(commitId);
-            diff.setNamespace(namespace);
-            diff.setRepoId(repoId);
-            diff.analysis();
+            GitLabDiffWrapper wrapper = new GitLabDiffWrapper(commitId, namespace, repoId);
+            codes.showme.pinecone.cdp.domain.commit.Diff diff = wrapper.buildDiffObj(gitlabDiff);
+            diff.setId(UUID.randomUUID().toString());
             return diff;
         }).collect(Collectors.toList());
     }
@@ -117,9 +112,10 @@ public class SyncGitLabServiceImpl implements SyncGitLabService {
         this.fileHistoryRepository = fileHistoryRepository;
     }
 
-    private codes.showme.pinecone.cdp.domain.commit.Commit buildBy(Commit commit) {
+    private codes.showme.pinecone.cdp.domain.commit.Commit buildBy(Commit commit, String namespace) {
         codes.showme.pinecone.cdp.domain.commit.Commit result = new codes.showme.pinecone.cdp.domain.commit.Commit();
         result.setId(commit.getId());
+        result.setNamespace(namespace);
         result.setAuthorId(commit.getAuthorName());
         result.setCommitAt(commit.getCreatedAt());
         result.setJsonSrc(commit.toString());
