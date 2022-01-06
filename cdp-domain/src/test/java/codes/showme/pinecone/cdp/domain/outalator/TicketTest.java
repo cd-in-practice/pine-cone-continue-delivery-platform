@@ -10,6 +10,7 @@ public class TicketTest {
         ticket.setEscalatorLevel(1);
         ticket.setState(TicketState.OPENED);
         ticket.setSummary("summary of ");
+        ticket.save();
     }
 
 }

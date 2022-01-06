@@ -1,5 +1,9 @@
 package codes.showme.pinecone.cdp.domain.outalator;
 
+import codes.showme.pinecone.cdp.domain.outalator.repository.TicketRepository;
+import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
+import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -42,6 +46,22 @@ public class Ticket implements Serializable {
     @Column(name = "ticket_content_type")
     private TicketContentType ticketContentType = TicketContentType.MD;
 
+    /**
+     *
+     * @return id
+     */
+    public String save() {
+        TicketRepository repository = InstanceFactory.getInstance(TicketRepository.class);
+        repository.save(this);
+        return getId();
+    }
+
+    public Ticket buildNew(){
+        Ticket ticket = new Ticket();
+        String generateId = InstanceFactory.getInstance(IdGenerator.class).generate();
+        ticket.setId(generateId);
+        return ticket;
+    }
 
     public String getId() {
         return id;
@@ -114,4 +134,5 @@ public class Ticket implements Serializable {
     public void setTicketContentType(TicketContentType ticketContentType) {
         this.ticketContentType = ticketContentType;
     }
+
 }
