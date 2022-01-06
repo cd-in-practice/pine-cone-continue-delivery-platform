@@ -48,6 +48,7 @@ maven_install(
         "io.ebean:ebean:12.12.1",
         "io.ebean:ebean-api:12.12.1",
         "io.ebean:querybean-generator:12.12.1",
+        "org.hamcrest:hamcrest-library:2.2",
         "javax.annotation:javax.annotation-api:1.3.2",
         "javax.validation:validation-api:2.0.1.Final",
         "org.springframework.boot:spring-boot-starter-thymeleaf:2.5.1",
