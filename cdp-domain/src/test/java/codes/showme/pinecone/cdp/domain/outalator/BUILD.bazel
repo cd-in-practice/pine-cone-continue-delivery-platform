@@ -1,0 +1,19 @@
+load("@rules_java//java:defs.bzl", "java_test")
+
+java_library(
+    name = "java_test_deps",
+    exports = [
+        "@maven//:junit_junit",
+        "@maven//:org_hamcrest_hamcrest_library",
+    ],
+)
+
+java_test(
+    name = "ticket_unittest",
+    srcs = ["TicketTest.java"],
+    test_class = "codes.showme.pinecone.cdp.domain.outalator.TicketTest",
+    deps = [
+        ":java_test_deps",
+        "//cdp-domain",
+    ],
+)

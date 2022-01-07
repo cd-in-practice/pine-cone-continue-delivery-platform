@@ -1,24 +1,24 @@
 package codes.showme.pinecone.cdp.domain.outalator;
 
+import codes.showme.pinecone.cdp.domain.DomainEntity;
+import codes.showme.pinecone.cdp.domain.id.IdPrefix;
 import codes.showme.pinecone.cdp.domain.outalator.repository.TicketRepository;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
 @Table(name = "cdp_outalator_tickets")
-public class Ticket implements Serializable {
+public class Ticket implements Serializable, DomainEntity<Ticket> {
 
     private static final long serialVersionUID = -5433564298672145086L;
 
-    @Id
-    @Column(name = "id", length = 32)
+    @javax.persistence.Id
+    @Column(name = "id", length = ID_LENGTH)
     private String id;
 
     @Column(name = "summary", columnDefinition = "text")
@@ -47,16 +47,22 @@ public class Ticket implements Serializable {
     private TicketContentType ticketContentType = TicketContentType.MD;
 
     /**
-     *
      * @return id
      */
+    @Override
     public String save() {
         TicketRepository repository = InstanceFactory.getInstance(TicketRepository.class);
         repository.save(this);
         return getId();
     }
 
-    public Ticket buildNew(){
+    @Override
+    public String getIdPrefix() {
+        return IdPrefix.TICKET.getVal();
+    }
+
+    @Override
+    public Ticket buildNew() {
         Ticket ticket = new Ticket();
         String generateId = InstanceFactory.getInstance(IdGenerator.class).generate();
         ticket.setId(generateId);

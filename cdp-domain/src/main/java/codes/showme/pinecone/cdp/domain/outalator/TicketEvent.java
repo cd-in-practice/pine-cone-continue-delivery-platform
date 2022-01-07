@@ -1,14 +1,25 @@
 package codes.showme.pinecone.cdp.domain.outalator;
 
+import codes.showme.pinecone.cdp.domain.DomainEntity;
+import codes.showme.pinecone.cdp.domain.id.IdPrefix;
+import codes.showme.pinecone.cdp.domain.outalator.repository.TicketEventRepository;
+import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
+import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "cdp_ticket_events")
-public class TicketEvent implements Serializable {
+public class TicketEvent implements Serializable, DomainEntity<TicketEvent> {
 
     private static final long serialVersionUID = -485783861304087376L;
+
+    @javax.persistence.Id
+    @Column(name = "id", length = ID_LENGTH)
+    private String id;
+
     /**
      * creator of the event
      */
@@ -29,8 +40,36 @@ public class TicketEvent implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createTime;
 
+    @Override
+    public String getIdPrefix() {
+        return IdPrefix.TICKET_EVENT.getVal();
+    }
+
+    @Override
+    public TicketEvent buildNew() {
+        TicketEvent ticketEvent = new TicketEvent();
+        IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
+        ticketEvent.setId(idGenerator.generateWithPrefix(getIdPrefix()));
+        return ticketEvent;
+    }
+
+    @Override
+    public String save() {
+        TicketEventRepository ticketEventRepository = InstanceFactory.getInstance(TicketEventRepository.class);
+        ticketEventRepository.save(this);
+        return getId();
+    }
+
     public String getCreatorId() {
         return creatorId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setCreatorId(String creatorId) {
@@ -84,4 +123,6 @@ public class TicketEvent implements Serializable {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+
 }
