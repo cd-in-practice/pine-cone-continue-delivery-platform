@@ -5,6 +5,8 @@ import codes.showme.pinecone.cdp.domain.id.IdPrefix;
 import codes.showme.pinecone.cdp.domain.outalator.repository.TicketRepository;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
+import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -54,6 +56,11 @@ public class Ticket implements Serializable, DomainEntity<Ticket> {
         TicketRepository repository = InstanceFactory.getInstance(TicketRepository.class);
         repository.save(this);
         return getId();
+    }
+
+    public Pagination<Ticket> paginationBy(String teamTag, PageRequest pageRequest) {
+        TicketRepository repository = InstanceFactory.getInstance(TicketRepository.class);
+        return repository.paginationBy(teamTag, pageRequest);
     }
 
     @Override
