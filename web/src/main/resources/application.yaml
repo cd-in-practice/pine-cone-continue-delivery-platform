@@ -21,26 +21,27 @@ spring:
     encoding: UTF-8
     suffix: .html
     check-template-location: true
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    username: root
-    password: abcd1234
-    url: jdbc:mysql://127.0.0.1:3307/cdp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    username: root
+#    password: abcd1234
+#    url: jdbc:postgresql://localhost:5432/cdp
+#
 
 #
 #logging:
 #  level:
 #
 
-ebean:
-  db:
-    ddl:
-      generate: false
-      run: true
-    username: root
-    password: abcd1234
-    url: jdbc:mysql://127.0.0.1:3307/cdp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+#ebean:
+#  dbSchema: cdp
+#  db:
+#    ddl:
+#      generate: false
+#      run: true
+#    username: my_app
+#    password: my_password
+#    url: jdbc:postgresql://localhost:5432/cdp
 
 
 
@@ -48,8 +49,8 @@ ebean:
 datasource:
   default: db
   db:
-    databaseDriver: com.mysql.cj.jdbc.Driver
-    databaseUrl: jdbc:mysql://127.0.0.1:3307/cdp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    password: abcd1234
+    databaseDriver: org.postgresql.Driver
+    databaseUrl: jdbc:postgresql://localhost:5432/cdp
+    password: 123456
     updatesDeleteMissingChildren: true
     username: root
