@@ -1,16 +1,8 @@
 package codes.showme.pinecone.cdp.domain.artifact;
 
-import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
-import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
-
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
-@Entity
-@DiscriminatorValue("java")
-public class JavaArtifact extends Artifact{
+public class JavaArtifactCoordinate extends ArtifactCoordinate {
     @Column(name = "java_repo_id", length = 128)
     private String repoId;
     @Column(name = "java_group_id", length = 50)
@@ -54,4 +46,8 @@ public class JavaArtifact extends Artifact{
     }
 
 
+    @Override
+    public ArtifactType getType() {
+        return ArtifactType.JAR;
+    }
 }

@@ -68,14 +68,6 @@ public class Ticket implements Serializable, DomainEntity<Ticket> {
         return IdPrefix.TICKET.getVal();
     }
 
-    @Override
-    public Ticket buildNew() {
-        Ticket ticket = new Ticket();
-        String generateId = InstanceFactory.getInstance(IdGenerator.class).generate();
-        ticket.setId(generateId);
-        return ticket;
-    }
-
     public String getId() {
         return id;
     }

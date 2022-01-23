@@ -2,8 +2,8 @@ package codes.showme.pinecone.cdp.grpcserver.controller;
 
 import code.showme.pinecone.cdp.artifact.TarArtifactGrpc;
 import code.showme.pinecone.cdp.artifact.TarArtifactOuterClass;
-import code.showme.pinecone.cdp.artifact.TarArtifactGrpc;
-import codes.showme.pinecone.cdp.domain.artifact.TarArtifact;
+import codes.showme.pinecone.cdp.domain.artifact.Artifact;
+import codes.showme.pinecone.cdp.domain.artifact.TarArtifactCoordinate;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 
@@ -12,7 +12,7 @@ public class TarArtifactController extends TarArtifactGrpc.TarArtifactImplBase {
     @Override
     public void push(TarArtifactOuterClass.TarArtifactRequest request, StreamObserver<TarArtifactOuterClass.TarArtifactReply> responseObserver) {
         try {
-            TarArtifact artifact = convert(request);
+            Artifact artifact = convert(request);
             artifact.save();
             responseObserver.onNext(TarArtifactOuterClass.TarArtifactReply.newBuilder().setReceived(true).build());
             responseObserver.onCompleted();
@@ -22,16 +22,16 @@ public class TarArtifactController extends TarArtifactGrpc.TarArtifactImplBase {
         }
     }
 
-    private TarArtifact convert(TarArtifactOuterClass.TarArtifactRequest request) {
-        TarArtifact result = new TarArtifact();
+    private Artifact convert(TarArtifactOuterClass.TarArtifactRequest request) {
+        Artifact result = new Artifact();
         result.setAppId(request.getAppId());
         result.setPipelineHistoryId(request.getPipelineHistoryId());
-        result.setPipelineHistoryUrl(request.getPipelineHistoryUrl());
         result.setArtifactVersion(request.getArtifactVersion());
         result.setBuildNumber(request.getBuildNumber());
         result.setNamespace(request.getNamespace());
-
-        result.setUrl(request.getUrl());
+        TarArtifactCoordinate tarArtifactCoordinate = new TarArtifactCoordinate();
+        tarArtifactCoordinate.setUrl(request.getUrl());
+        result.setCoordinate(tarArtifactCoordinate);
         return result;
     }
 }

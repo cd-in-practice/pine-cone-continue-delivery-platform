@@ -1,6 +1,8 @@
 package codes.showme.pinecone.cdp.domain.app;
 
+import codes.showme.pinecone.cdp.domain.DomainEntity;
 import codes.showme.pinecone.cdp.domain.app.repository.AppRepository;
+import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
@@ -17,21 +19,25 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "cdp_apps")
-public class App implements Serializable {
+public class App implements Serializable, DomainEntity<App> {
 
     private static final long serialVersionUID = -140694797306671363L;
     public static final int COLUMN_NAMESPACE_SIZE = 32;
     public static final int COLUMN_ID_LENGTH = 32;
+    private static final int COLUMN_NAME_LENGTH = 32;
 
     @Id
     @Column(name = "id", length = COLUMN_ID_LENGTH)
     private String id;
 
-    @Column(name = "name", length = 64)
+    @Column(name = "name", length = COLUMN_NAME_LENGTH)
     private String name;
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
+
+    public App() {
+    }
 
     public App(String appName, String namespace) {
         this.name = appName;
@@ -68,5 +74,24 @@ public class App implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String getIdPrefix() {
+        return "app";
+    }
+
+    public static App buildNew() {
+        IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
+        App app = new App();
+        app.setId(idGenerator.generateWithPrefix(app.getIdPrefix()));
+        return app;
+    }
+
+    @Override
+    public Serializable save() {
+        AppRepository appRepository = InstanceFactory.getInstance(AppRepository.class);
+        appRepository.save(this);
+        return getId();
     }
 }

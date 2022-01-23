@@ -3,6 +3,7 @@ package codes.showme.pinecone.cdp.domain.commit;
 import codes.showme.pinecone.cdp.domain.commit.repository.CommitRepository;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import io.ebean.annotation.DbJson;
+import io.ebean.annotation.DbJsonB;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,8 +29,7 @@ public class Commit {
     @Column(name = "namespace", length = 32)
     private String namespace;
 
-    @Column(name = "json_src", columnDefinition = "text")
-//    @DbJson(name = "json_src")
+    @DbJsonB(name = "json_src")
     private String jsonSrc;
 
     @Column(name = "author_id")

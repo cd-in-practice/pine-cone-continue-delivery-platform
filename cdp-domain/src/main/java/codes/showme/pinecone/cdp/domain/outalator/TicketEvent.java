@@ -46,14 +46,6 @@ public class TicketEvent implements Serializable, DomainEntity<TicketEvent> {
     }
 
     @Override
-    public TicketEvent buildNew() {
-        TicketEvent ticketEvent = new TicketEvent();
-        IdGenerator idGenerator = InstanceFactory.getInstance(IdGenerator.class);
-        ticketEvent.setId(idGenerator.generateWithPrefix(getIdPrefix()));
-        return ticketEvent;
-    }
-
-    @Override
     public String save() {
         TicketEventRepository ticketEventRepository = InstanceFactory.getInstance(TicketEventRepository.class);
         ticketEventRepository.save(this);

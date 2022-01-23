@@ -6,4 +6,6 @@ import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
 
 public interface AppRepository {
     Pagination<App> listByNamespace(String namespace, PageRequest pageRequest);
+
+    void save(App app);
 }

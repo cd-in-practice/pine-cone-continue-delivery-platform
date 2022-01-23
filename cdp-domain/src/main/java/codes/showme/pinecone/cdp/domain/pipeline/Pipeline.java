@@ -14,10 +14,11 @@ import java.util.Set;
 @Table(name = "cdp_pipelines")
 public class Pipeline implements Serializable {
 
+    public static final int COLUMN_ID_LENGTH = 32;
     private static final long serialVersionUID = -1969892567479603934L;
 
     @Id
-    @Column(name = "id", length = 32)
+    @Column(name = "id", length = COLUMN_ID_LENGTH)
     private String id;
 
     @ElementCollection

@@ -16,10 +16,11 @@ import java.io.Serializable;
 @Table(name = "cdp_pipeline_history")
 public class PipelineHistory implements Serializable {
 
+    public static final int COLUMN_ID_LENGTH = 32;
     private static final long serialVersionUID = 4839444364847751880L;
 
     @Id
-    @Column(name = "id", length = 32)
+    @Column(name = "id", length = COLUMN_ID_LENGTH)
     private String id;
 
     @Column(name = "result")
@@ -29,7 +30,7 @@ public class PipelineHistory implements Serializable {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "pipeline_id", length = 32)
+    @Column(name = "pipeline_id", length = Pipeline.COLUMN_ID_LENGTH)
     public String pipelineId;
 
     @Column(name = "scm_commit")

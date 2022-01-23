@@ -1,4 +1,0 @@
-ebean:
-  ddl:
-    generate: true
-    run: true

@@ -1,62 +1,66 @@
 package codes.showme.pinecone.cdp.domain.artifact;
 
+import codes.showme.pinecone.cdp.domain.DomainEntity;
 import codes.showme.pinecone.cdp.domain.app.App;
 import codes.showme.pinecone.cdp.domain.artifact.repository.ArtifactRepository;
 
+import codes.showme.pinecone.cdp.domain.pipeline.Pipeline;
+import codes.showme.pinecone.cdp.domain.pipeline.PipelineHistory;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+import io.ebean.annotation.DbJsonB;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 import static codes.showme.pinecone.cdp.domain.app.App.COLUMN_NAMESPACE_SIZE;
 
-@MappedSuperclass
+
+/**
+ * A application would have one or some kinds of artifacts.
+ */
 @Entity
 @Table(name = "cdp_artifacts")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "artifact_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class Artifact implements Serializable {
+public class Artifact implements Serializable, DomainEntity<Artifact> {
 
     private static final long serialVersionUID = 6414966831562691687L;
 
+    public static final int COLUMN_ID_LENGTH = 32;
+    public static final int COLUMN_ARTIFACT_VERSION_LENGTH = 32;
+
     @Id
-    @Column(name = "id", length = 64)
+    @Column(name = "id", length = COLUMN_ID_LENGTH)
     private String id;
 
-    @Column(name = "name", length = 64)
+    @Column(name = "name", length = 32)
     private String name;
 
-    /**
-     * 制品版本，与制品坐标不同
-     */
-    @Column(name = "artifact_version", length = 64)
+    @Column(name = "artifact_version", length = COLUMN_ARTIFACT_VERSION_LENGTH)
     private String artifactVersion;
 
     @Column(name = "build_number")
     private int buildNumber;
 
-    @Column(name = "pipeline_id")
+    @Column(name = "pipeline_id", length = Pipeline.COLUMN_ID_LENGTH)
     private String pipelineId;
 
-    @Column(name = "pipeline_history_id")
+    @Column(name = "pipeline_history_id", length = PipelineHistory.COLUMN_ID_LENGTH)
     private String pipelineHistoryId;
-
-    /**
-     * 过渡阶段使用
-     */
-    @Column(name = "pipeline_history_url")
-    private String pipelineHistoryUrl;
 
     @Column(name = "app_id", length = App.COLUMN_ID_LENGTH)
     private String appId;
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
+
+    @Column(name = "commit_id", length = 40)
+    private String commitId;
+
+    @Column(name = "md5_hash", length = 32)
+    private String md5Hash;
 
     @Column(name = "create_time")
     @Temporal(TemporalType.TIMESTAMP)
@@ -66,23 +70,51 @@ public abstract class Artifact implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
 
-    /**
-     * 暂时为json结构，未来如果需要支持多种结构再扩展
-     * 构建过程的元数据是跟制品，还是跟流水线，是一个问题。
-     * 这里认为，应该对构建过程中的元数据进行分类。
-     * 这里的rawMetadata是制品类的元数据。
-     */
-    @Column(name = "raw_metadata")
-    @Lob
-    private String rawMetadata;
+    @Column(name = "labels", columnDefinition = "jsonb")
+    @DbJsonB
+    private Set<ArtifactLabel> labels = new TreeSet<>();
+
+    @DbJsonB
+    @Column(name = "coordinate", columnDefinition = "jsonb")
+    private ArtifactCoordinate coordinate;
 
     /**
-     * 将此制品定义成App
+     *
+     */
+    public static Optional<Artifact> findLatestTestPass(String namespace,
+                                                        String appId,
+                                                        String name) {
+
+        ArtifactRepository artifactRepository = InstanceFactory.getInstance(ArtifactRepository.class);
+        return artifactRepository.findBy(namespace, appId, name, ArtifactLabel.buildTestPassLabel());
+    }
+
+    public static Optional<Artifact> findLatestCanary(String namespace,
+                                                      String appId,
+                                                      String name) {
+        ArtifactRepository artifactRepository = InstanceFactory.getInstance(ArtifactRepository.class);
+        return artifactRepository.findBy(namespace, appId, name, ArtifactLabel.buildReleaseCanaryLabel());
+    }
+
+    public static List<Artifact> paginationByLabels(List<ArtifactLabel> labels) {
+        return new ArrayList<>();
+    }
+
+    /**
+     * 拿到最新的可用的包
      *
      * @return
      */
-    public void defineAsAnApp(String appId) {
-        setAppId(id);
+    public Optional<Artifact> findLatest() {
+        return Optional.empty();
+    }
+
+    public Optional<Artifact> findCanary() {
+        return Optional.empty();
+    }
+
+    public void appendLabelAndSave(String labelName, Object val) {
+        labels.add(new ArtifactLabel(labelName, val));
         save();
     }
 
@@ -115,7 +147,12 @@ public abstract class Artifact implements Serializable {
         return repository.pagination(appId, pageRequest, clasz);
     }
 
+    @Override
+    public String getIdPrefix() {
+        return "art";
+    }
 
+    @Override
     public Serializable save() {
         ArtifactRepository repository = InstanceFactory.getInstance(ArtifactRepository.class);
         if (Objects.isNull(getId())) {
@@ -123,22 +160,6 @@ public abstract class Artifact implements Serializable {
             setId(idGenerator.generate());
         }
         return repository.save(this);
-    }
-
-    public String getPipelineHistoryUrl() {
-        return pipelineHistoryUrl;
-    }
-
-    public void setPipelineHistoryUrl(String pipelineHistoryUrl) {
-        this.pipelineHistoryUrl = pipelineHistoryUrl;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPipelineId() {
@@ -149,12 +170,41 @@ public abstract class Artifact implements Serializable {
         this.pipelineId = pipelineId;
     }
 
-    public String getRawMetadata() {
-        return rawMetadata;
+
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setRawMetadata(String rawMetadata) {
-        this.rawMetadata = rawMetadata;
+    public void setCommitId(String commitId) {
+        this.commitId = commitId;
+    }
+
+    public void setMd5Hash(String md5Hash) {
+        this.md5Hash = md5Hash;
+    }
+
+    public void setCoordinate(ArtifactCoordinate coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCommitId() {
+        return commitId;
+    }
+
+    public String getMd5Hash() {
+        return md5Hash;
+    }
+
+    public Set<ArtifactLabel> getLabels() {
+        return Collections.unmodifiableSet(labels);
+    }
+
+    public ArtifactCoordinate getCoordinate() {
+        return coordinate;
     }
 
     public String getPipelineHistoryId() {
