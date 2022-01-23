@@ -1,12 +1,69 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
+<section class="section">
+    <div class="box">
+        <h1 class="title">AppName</h1>
+        <h2 class="subtitle">description</h2>
+    </div>
 
-<div th:each="item : ${pagination.results}">
-    <a th:text="${item.name}"></a>
-</div>
+    <div class="box">
+        <div class="tabs">
+            <ul>
+                <li class="is-active"><a>Env</a></li>
+                <li><a>Artifacts</a></li>
+                <li><a>Deployments</a></li>
+                <li><a>Pipelines</a></li>
+                <li><a>Tests</a></li>
+            </ul>
+        </div>
+        <div class="content">
+
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">
+                            Overview
+                        </p>
+                        <ul class="menu-list">
+                            <li ><a class="is-active">SIT</a></li>
+                            <li><a>UAT</a></li>
+                            <li><a>PROD</a></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column">
+                    <div class="tabs">
+                        <ul>
+                            <li class="is-active"><a>Overview</a></li>
+                            <li><a>AppConfig</a></li>
+                            <li><a>DeployConfig</a></li>
+                            <li><a>Activity</a></li>
+                        </ul>
+                    </div>
+                    <div class="content">
+                        <p>这是SIT环境的摘要。</p>
+                        包括内容：
+
+                        1. 当前SIT的版本。可以同时存在多个版本
+                        2. 每个版本的流量的比例
+                        3. 监控数据
+                        4. 方便导航到该APP的各种链接：日志查看页，监控页详细
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section>
 </body>
 </html>
