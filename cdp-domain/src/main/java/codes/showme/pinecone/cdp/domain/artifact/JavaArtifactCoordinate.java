@@ -9,7 +9,6 @@ public class JavaArtifactCoordinate extends ArtifactCoordinate {
     private String groupId;
     @Column(name = "java_artifact_id", length = 50)
     private String artifactId;
-
     @Column(name = "java_artifact_version", length = 25)
     private String javaArtifactVersion;
 

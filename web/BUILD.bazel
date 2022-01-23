@@ -1,0 +1,46 @@
+java_library(
+    name = "web-server-lib",
+    srcs = glob(["src/main/java/**/*.java"]),
+    resources = glob(["src/main/resources/**"]),
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cdp-code-analysis-domain",
+        "//cdp-domain",
+        "//cdp-pb:cdp_event_java_grpc",
+        "//cdp-pb:code_analysis_java_grpc",
+        "//cdp-pb:docker_image_artifact_java_grpc",
+        "//cdp-pb:java_artifact_java_grpc",
+        "//cdp-pb:tar_artifact_java_grpc",
+        "//cdp-rocketmq-repository",
+        "//cdp-tech-common",
+        "//spring-ioc-impl",
+        "@maven//:ch_qos_logback_logback_core",
+        "@maven//:io_ebean_ebean",
+        "@maven//:io_ebean_ebean_annotation",
+        "@maven//:io_github_lognet_grpc_spring_boot_starter",
+        "@maven//:javax_annotation_javax_annotation_api",
+        "@maven//:org_apache_commons_commons_lang3",
+        "@maven//:org_postgresql_postgresql",
+        "@maven//:org_slf4j_slf4j_api",
+        "@maven//:org_springframework_boot_spring_boot",
+        "@maven//:org_springframework_boot_spring_boot_autoconfigure",
+        "@maven//:org_springframework_boot_spring_boot_starter",
+        "@maven//:org_springframework_boot_spring_boot_starter_thymeleaf",
+        "@maven//:org_springframework_boot_spring_boot_starter_web",
+        "@maven//:org_springframework_spring_beans",
+        "@maven//:org_springframework_spring_context",
+        "@maven//:org_springframework_spring_web",
+    ],
+)
+
+java_binary(
+    name = "web-server",
+    main_class = "codes.showme.pinecone.cdp.web.Main",
+    resources = [
+        "//web/src/main/resources:web-resource",
+    ],
+    visibility = ["//visibility:public"],
+    runtime_deps = [
+        "//web:web-server-lib",
+    ],
+)

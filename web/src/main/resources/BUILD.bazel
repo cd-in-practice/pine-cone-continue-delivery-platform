@@ -1,0 +1,8 @@
+filegroup(
+    name = "web-resource",
+    srcs = glob([
+        "src/main/resouces/*",
+        "**/*",
+    ]),
+    visibility = ["//visibility:public"],
+)
