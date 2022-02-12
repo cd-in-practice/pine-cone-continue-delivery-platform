@@ -1,8 +1,0 @@
-filegroup(
-    name = "grpc-server-resource",
-    srcs = glob([
-        "src/main/resouces/*",
-        "**/*",
-    ]),
-    visibility = ["//visibility:public"],
-)

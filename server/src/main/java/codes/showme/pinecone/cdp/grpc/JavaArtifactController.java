@@ -1,4 +1,4 @@
-package codes.showme.pinecone.cdp.grpcserver.controller;
+package codes.showme.pinecone.cdp.grpc;
 
 import code.showme.pinecone.cdp.artifact.JavaArtifactGrpc;
 import code.showme.pinecone.cdp.artifact.JavaArtifactOuterClass;

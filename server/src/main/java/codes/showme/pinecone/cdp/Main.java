@@ -1,4 +1,4 @@
-package codes.showme.pinecone.cdp.web;
+package codes.showme.pinecone.cdp;
 
 import codes.showme.pinecone.cdp.ioc.SpringInstanceProvider;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;

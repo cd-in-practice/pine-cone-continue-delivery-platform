@@ -2,7 +2,8 @@
 
 server:
   port: 8080
-
+grpc:
+  port: 6565
 spring:
   http:
     encoding:
@@ -50,7 +51,7 @@ datasource:
   default: db
   db:
     databaseDriver: org.postgresql.Driver
-    databaseUrl: jdbc:postgresql://localhost:5432/cdp
-    password: 123456
+    databaseUrl: jdbc:postgresql://172.18.8.101:30002/cdp
+    password: cdp
     updatesDeleteMissingChildren: true
-    username: root
+    username: cdp

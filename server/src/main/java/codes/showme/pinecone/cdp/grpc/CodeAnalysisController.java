@@ -1,4 +1,4 @@
-package codes.showme.pinecone.cdp.grpcserver.controller;
+package codes.showme.pinecone.cdp.grpc;
 
 import code.showme.pinecone.cdp.code.CodeAnalysisGrpc;
 import code.showme.pinecone.cdp.code.CodeAnalysisOuterClass;

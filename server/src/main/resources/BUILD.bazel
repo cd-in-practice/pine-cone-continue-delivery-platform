@@ -1,5 +1,5 @@
 filegroup(
-    name = "web-resource",
+    name = "server-resource",
     srcs = glob([
         "src/main/resouces/*",
         "**/*",

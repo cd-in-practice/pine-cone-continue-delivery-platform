@@ -1,5 +1,5 @@
 java_library(
-    name = "web-server-lib",
+    name = "server-lib",
     srcs = glob(["src/main/java/**/*.java"]),
     resources = glob(["src/main/resources/**"]),
     visibility = ["//visibility:public"],
@@ -11,6 +11,7 @@ java_library(
         "//cdp-pb:docker_image_artifact_java_grpc",
         "//cdp-pb:java_artifact_java_grpc",
         "//cdp-pb:tar_artifact_java_grpc",
+        #        "//cdp-rocketmq-repository",
         "//cdp-tech-common",
         "//postgres-repository",
         "//spring-ioc-impl",
@@ -34,13 +35,12 @@ java_library(
 )
 
 java_binary(
-    name = "web-server",
-    main_class = "codes.showme.pinecone.cdp.web.Main",
+    name = "server",
+    main_class = "codes.showme.pinecone.cdp.Main",
     resources = [
-        "//web/src/main/resources:web-resource",
+        "//server/src/main/resources:server-resource",
     ],
-    visibility = ["//visibility:public"],
     runtime_deps = [
-        "//web:web-server-lib",
+        "//server:server-lib",
     ],
 )
