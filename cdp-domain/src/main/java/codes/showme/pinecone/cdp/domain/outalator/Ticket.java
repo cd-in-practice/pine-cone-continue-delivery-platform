@@ -7,6 +7,7 @@ import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+import io.ebean.annotation.DbJsonB;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -39,6 +40,8 @@ public class Ticket implements Serializable, DomainEntity<Ticket> {
     @Column(name = "team_id", length = 32)
     private String teamId;
 
+    @DbJsonB
+    @Column(name = "ticket_tags")
     private Set<TicketTag> ticketTags = new HashSet<>();
 
     @Column(name = "content", columnDefinition = "text")

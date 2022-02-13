@@ -1,7 +1,7 @@
 package codes.showme.pinecone.cdp.domain.id;
 
 public enum IdPrefix {
-    TICKET("tik"), TICKET_EVENT("tke");
+    TICKET("tik"), TICKET_EVENT("tke"),PROMETHEUS_ALERT("pa");
 
 
     private String val;

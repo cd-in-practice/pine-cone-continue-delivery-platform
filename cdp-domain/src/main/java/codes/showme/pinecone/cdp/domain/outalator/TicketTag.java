@@ -10,28 +10,15 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
-@Entity
-@Table(name = "cdp_ticket_tags")
+
 public class TicketTag implements Serializable{
 
     private static final long serialVersionUID = -3037243383111308197L;
-    @Id
-    @Column(name = "id", length = 32)
-    private String id;
-
     @Column(name = "tag_key", length = 32)
     private String tagKey;
     @Column(name = "tag_value", length = 40)
     private String tagValue;
 
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getTagKey() {
         return tagKey;

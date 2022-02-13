@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * all entity would be implemented DomainEntity
  */
-public interface DomainEntity<T> {
+public interface DomainEntity<T>{
 
     static final int ID_LENGTH = 32;
 

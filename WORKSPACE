@@ -46,6 +46,7 @@ maven_install(
         "com.google.j2objc:j2objc-annotations:1.1",
         "javax.persistence:persistence-api:1.0.2",
         "io.ebean:ebean:12.12.1",
+        'org.apache.shiro:shiro-spring-boot-web-starter:1.8.0',
         "io.ebean:ebean-api:12.12.1",
         "io.ebean:querybean-generator:12.12.1",
         "org.hamcrest:hamcrest-library:2.2",
