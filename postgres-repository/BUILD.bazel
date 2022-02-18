@@ -11,11 +11,24 @@ java_library(
         "@maven//:io_ebean_ebean",
         "@maven//:io_ebean_ebean_annotation",
         "@maven//:io_ebean_ebean_api",
+        "@maven//:io_ebean_ebean_core",
         "@maven//:javax_annotation_javax_annotation_api",
         "@maven//:org_apache_commons_commons_lang3",
         "@maven//:org_postgresql_postgresql",
         "@maven//:org_slf4j_slf4j_api",
         "@maven//:org_springframework_spring_beans",
         "@maven//:org_springframework_spring_context",
+    ],
+)
+
+java_test(
+    name = "ddlgenerate",
+    size = "small",
+    srcs = ["src/test/java/codes/showme/pinecone/cdp/domain/DDLGenerate.java"],
+    test_class = "codes.showme.pinecone.cdp.domain.DDLGenerate",
+    deps = [
+        ":postgres-repository",
+        "//:java_test_deps",
+        "@maven//:io_ebean_ebean",
     ],
 )
