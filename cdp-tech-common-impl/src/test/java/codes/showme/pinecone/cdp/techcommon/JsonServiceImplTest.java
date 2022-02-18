@@ -1,18 +1,40 @@
 package codes.showme.pinecone.cdp.techcommon;
 
-import java.util.Date;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class JsonServiceImplTest {
+    String jsonString = "{\"name\":\"name\",\"age\":1}";
 
     @org.junit.Test
     public void toJsonString() {
         Example example = new Example();
         example.setName("name");
         example.setAge(1);
-        assertEquals("{\"name\":\"name\",\"age\":1}", new JsonServiceImpl().toJsonString(example));
+        assertEquals(jsonString, new JsonServiceImpl().toJsonString(example));
     }
+    
+    
+    @Test
+    public void testToObject(){
+
+        Example example = new JsonServiceImpl().toObject(jsonString.getBytes(), Example.class);
+        assertEquals("name", example.getName());
+        assertEquals(1, example.getAge());
+
+    }
+
+    @Test
+    public void toMap(){
+        Map<String, Object> stringObjectMap = new JsonServiceImpl().toHashMap(jsonString);
+        assertEquals("name", stringObjectMap.get("name"));
+        assertEquals(1, stringObjectMap.get("age"));
+    }
+    
 
     public static class Example {
 
