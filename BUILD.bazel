@@ -6,6 +6,7 @@ java_library(
     exports = [
         "@maven//:junit_junit",
         "@maven//:org_hamcrest_hamcrest_library",
+        "@maven//:io_ebean_ebean_test",
         "@maven//:org_testcontainers_postgresql",
         "@maven//:org_testcontainers_testcontainers",
     ],

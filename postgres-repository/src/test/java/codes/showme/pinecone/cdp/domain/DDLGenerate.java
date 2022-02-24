@@ -1,9 +1,11 @@
 package codes.showme.pinecone.cdp.domain;
 
-
+import codes.showme.pinecone.cdp.domain.app.App;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
+import io.ebean.datasource.DataSourceConfig;
+import org.junit.Rule;
 import org.junit.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 
@@ -12,32 +14,30 @@ import org.testcontainers.containers.PostgreSQLContainer;
  */
 public class DDLGenerate {
 
+    @Rule
+    public PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer<>(POSTGRES_12_8)
+            .withUsername("testcontainers")
+            .withPassword("testcontainers")
+            .withDatabaseName("tescontainers");
 
     public static final String POSTGRES_12_8 = "postgres:12.8";
 
     @Test
     public void name() {
-        try(PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer<>(POSTGRES_12_8)
-                .withUsername("testcontainers")
-                .withPassword("testcontainers")
-                .withDatabaseName("tescontainers")){
-            postgreSQLContainer.start();
-
-            DataSourceConfig dataSourceConfig = new DataSourceConfig();
-            dataSourceConfig.setUsername("sa");
-            dataSourceConfig.setPassword("");
-            dataSourceConfig.setUrl("jdbc:h2:mem:myapp;");
 
 
-            DatabaseConfig config = new DatabaseConfig();
-            config.setDataSourceConfig(dataSourceConfig);
 
-// create database instance
-            Database database = DatabaseFactory.create(config);
+        DatabaseConfig config = new DatabaseConfig();
+        DataSourceConfig dataSourceConfig = new DataSourceConfig();
+        dataSourceConfig.setUsername(postgreSQLContainer.getUsername());
+        dataSourceConfig.setPassword(postgreSQLContainer.getPassword());
+        dataSourceConfig.setUrl(postgreSQLContainer.getJdbcUrl());
+        config.setDataSourceConfig(dataSourceConfig);
 
-        }catch(Exception e){
-
-        }
+        Database database = DatabaseFactory.create(config);
+        App app = new App();
+        app.setId("app_id");
+        database.save(app);
 
     }
 }
