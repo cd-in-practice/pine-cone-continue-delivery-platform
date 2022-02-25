@@ -34,7 +34,7 @@ public class JsonServiceImpl implements JsonService {
     }
 
     @Override
-    public Map<String, Object> toHashMap(String rawContent) {
+    public HashMap<String, Object> toHashMap(String rawContent) {
         try {
             TypeReference<HashMap<String, Object>> typeRef
                     = new TypeReference<HashMap<String, Object>>() {

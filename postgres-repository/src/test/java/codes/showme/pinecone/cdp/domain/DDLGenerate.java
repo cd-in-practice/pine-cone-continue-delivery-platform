@@ -3,11 +3,15 @@ package codes.showme.pinecone.cdp.domain;
 import codes.showme.pinecone.cdp.domain.app.App;
 import io.ebean.Database;
 import io.ebean.DatabaseFactory;
+import io.ebean.bean.EntityBean;
 import io.ebean.config.DatabaseConfig;
+import io.ebean.config.dbplatform.DatabasePlatform;
 import io.ebean.datasource.DataSourceConfig;
 import org.junit.Rule;
 import org.junit.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
+
+import java.util.Arrays;
 
 /**
  * just for generate sql ddl
@@ -32,6 +36,8 @@ public class DDLGenerate {
         dataSourceConfig.setUsername(postgreSQLContainer.getUsername());
         dataSourceConfig.setPassword(postgreSQLContainer.getPassword());
         dataSourceConfig.setUrl(postgreSQLContainer.getJdbcUrl());
+        config.setDdlCreateOnly(true);
+        config.setPackages(Arrays.asList("codes.showme.pinecone.cdp.domain"));
         config.setDataSourceConfig(dataSourceConfig);
 
         Database database = DatabaseFactory.create(config);

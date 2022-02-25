@@ -5,7 +5,9 @@ import codes.showme.pinecone.cdp.domain.alert.repository.PrometheusAlertReposito
 import codes.showme.pinecone.cdp.techcommon.JsonService;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+import io.ebean.annotation.DbJson;
 import io.ebean.annotation.DbJsonB;
+import io.ebean.annotation.DbMap;
 import io.ebean.text.json.EJson;
 
 import javax.persistence.Column;
@@ -29,9 +31,9 @@ public class PrometheusAlert implements Serializable, DomainEntity<PrometheusAle
     @Column(name = "id")
     private String id;
 
-    @DbJsonB
+    @DbMap
     @Column(name = "raw_content", columnDefinition = "jsonb")
-    private Map<String, Object> rawContent = new HashMap<>();
+    private HashMap<String, Object> rawContent = new HashMap<>();
 
     @Column(name = "namespace", length = COLUMN_NAMESPACE_SIZE)
     private String namespace;
@@ -70,11 +72,11 @@ public class PrometheusAlert implements Serializable, DomainEntity<PrometheusAle
         return repository.save(this);
     }
 
-    public Map<String, Object> getRawContent() {
+    public HashMap<String, Object> getRawContent() {
         return rawContent;
     }
 
-    public void setRawContent(Map<String, Object> rawContent) {
+    public void setRawContent(HashMap<String, Object> rawContent) {
         this.rawContent = rawContent;
     }
 

@@ -1,11 +1,11 @@
 package codes.showme.pinecone.cdp.domain.app;
 
-import codes.showme.pinecone.cdp.domain.DomainEntity;
 import codes.showme.pinecone.cdp.domain.app.repository.AppRepository;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+import io.ebean.Model;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Column;
@@ -19,7 +19,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "cdp_apps")
-public class App implements Serializable, DomainEntity<App> {
+public class App  implements Serializable {
 
     private static final long serialVersionUID = -140694797306671363L;
     public static final int COLUMN_NAMESPACE_SIZE = 32;
@@ -76,7 +76,6 @@ public class App implements Serializable, DomainEntity<App> {
         this.name = name;
     }
 
-    @Override
     public String getIdPrefix() {
         return "app";
     }
@@ -88,10 +87,8 @@ public class App implements Serializable, DomainEntity<App> {
         return app;
     }
 
-    @Override
-    public Serializable save() {
+    public void save() {
         AppRepository appRepository = InstanceFactory.getInstance(AppRepository.class);
         appRepository.save(this);
-        return getId();
     }
 }

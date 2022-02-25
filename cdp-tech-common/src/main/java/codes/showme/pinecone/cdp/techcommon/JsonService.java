@@ -1,6 +1,7 @@
 package codes.showme.pinecone.cdp.techcommon;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public interface JsonService {
@@ -8,5 +9,5 @@ public interface JsonService {
 
     <T> T toObject(byte[] src, Class<T> tClass);
 
-    Map<String, Object> toHashMap(String rawContent) throws IOException;
+    HashMap<String, Object> toHashMap(String rawContent) throws IOException;
 }
