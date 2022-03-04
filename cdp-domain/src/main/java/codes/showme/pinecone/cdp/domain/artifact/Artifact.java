@@ -10,6 +10,8 @@ import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
 import codes.showme.pinecone.cdp.techcommon.pagination.PageRequest;
 import codes.showme.pinecone.cdp.techcommon.pagination.Pagination;
+import io.ebean.annotation.DbArray;
+import io.ebean.annotation.DbJson;
 import io.ebean.annotation.DbJsonB;
 
 import javax.persistence.*;
@@ -69,12 +71,12 @@ public class Artifact implements Serializable, DomainEntity<Artifact> {
     @Column(name = "updated_time")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedTime;
+//
+//    @Column(name = "labels", columnDefinition = "jsonb")
+//    @DbJsonB
+//    private List<ArtifactLabel> labels = new ArrayList<>();
 
-    @Column(name = "labels", columnDefinition = "jsonb")
-    @DbJsonB
-    private Set<ArtifactLabel> labels = new TreeSet<>();
-
-    @DbJsonB
+    @DbJson
     @Column(name = "coordinate", columnDefinition = "jsonb")
     private ArtifactCoordinate coordinate;
 
@@ -113,10 +115,10 @@ public class Artifact implements Serializable, DomainEntity<Artifact> {
         return Optional.empty();
     }
 
-    public void appendLabelAndSave(String labelName, Object val) {
-        labels.add(new ArtifactLabel(labelName, val));
-        save();
-    }
+//    public void appendLabelAndSave(String labelName, Object val) {
+//        labels.add(new ArtifactLabel(labelName, val));
+//        save();
+//    }
 
     /**
      * pipeline下的各种制品
@@ -197,10 +199,6 @@ public class Artifact implements Serializable, DomainEntity<Artifact> {
 
     public String getMd5Hash() {
         return md5Hash;
-    }
-
-    public Set<ArtifactLabel> getLabels() {
-        return Collections.unmodifiableSet(labels);
     }
 
     public ArtifactCoordinate getCoordinate() {

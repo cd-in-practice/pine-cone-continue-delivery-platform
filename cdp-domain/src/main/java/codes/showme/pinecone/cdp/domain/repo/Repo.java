@@ -1,6 +1,9 @@
 package codes.showme.pinecone.cdp.domain.repo;
 
 
+import io.ebean.annotation.DbJson;
+import io.ebean.annotation.DbJsonB;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -20,7 +23,7 @@ public class Repo implements Serializable {
     @Column(name = "namespace", length = 32)
     private String namespace;
 
-    @Embedded
+    @DbJsonB
     private List<RepoUrl> repoUrls;
 
     public String getId() {
