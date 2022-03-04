@@ -49,6 +49,7 @@ maven_install(
         "io.ebean:ebean:12.15.0",
         "io.ebean:ebean-api:12.15.0",
         "io.ebean:ebean-test:12.15.0",
+        "io.ebean:ebean-agent:12.15.0",
         "io.ebean:ebean-datasource-api:7.5",
         "io.ebean:querybean-generator:12.12.1",
         "org.hamcrest:hamcrest-library:2.2",

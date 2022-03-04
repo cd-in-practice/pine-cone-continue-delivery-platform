@@ -1,8 +1,6 @@
 package codes.showme.pinecone.cdp.domain.repo;
 
-import javax.persistence.Embeddable;
 
-@Embeddable
 public class RepoUrl {
 
 

@@ -5,6 +5,7 @@ import codes.showme.pinecone.cdp.domain.id.IdPrefix;
 import codes.showme.pinecone.cdp.domain.outalator.repository.TicketEventRepository;
 import codes.showme.pinecone.cdp.techcommon.idgenerator.IdGenerator;
 import codes.showme.pinecone.cdp.techcommon.ioc.InstanceFactory;
+import io.ebean.bean.EntityBean;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class TicketEvent implements Serializable, DomainEntity<TicketEvent> {
     private static final long serialVersionUID = -485783861304087376L;
 
     @javax.persistence.Id
-    @Column(name = "id", length = ID_LENGTH)
+    @Column(name = "id", length = 32)
     private String id;
 
     /**
@@ -115,6 +116,7 @@ public class TicketEvent implements Serializable, DomainEntity<TicketEvent> {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
 
 
 }
