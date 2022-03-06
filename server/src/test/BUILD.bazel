@@ -1,0 +1,46 @@
+#java_library(
+#    name = "server-test-lib",
+#    srcs = glob(["**/*.java"]),
+#    visibility = ["//visibility:public"],
+#    deps = [
+#        "//cdp-domain",
+#        "//cdp-tech-common",
+#        "@maven//:ch_qos_logback_logback_core",
+#        "@maven//:com_fasterxml_jackson_core_jackson_annotations",
+#        "@maven//:com_fasterxml_jackson_core_jackson_core",
+#        "@maven//:com_fasterxml_jackson_core_jackson_databind",
+#        "@maven//:com_vladmihalcea_hibernate_types_52",
+#        "@maven//:io_ebean_ebean",
+#        "@maven//:io_ebean_ebean_annotation",
+#        "@maven//:io_ebean_ebean_api",
+#        "@maven//:io_ebean_ebean_core",
+#        "@maven//:io_ebean_ebean_datasource_api",
+#        "@maven//:javax_annotation_javax_annotation_api",
+#        "@maven//:org_apache_commons_commons_lang3",
+#        "@maven//:org_postgresql_postgresql",
+#        "@maven//:org_slf4j_slf4j_api",
+#        "@maven//:org_springframework_spring_beans",
+#        "@maven//:org_springframework_spring_context",
+#    ],
+#)
+
+java_test(
+    name = "server-test",
+    size = "small",
+    srcs = glob(["java/codes/showme/pinecone/cdp/code/analysis/GitlabRepoSyncTest.java"]),
+    jvm_flags = [
+        # agent
+        "-javaagent:$(location @maven//:io_ebean_ebean_agent)",
+    ],
+    resources = ["//server/src/test/resources:server-test-resource"],
+    test_class = "codes.showme.pinecone.cdp.code.analysis.GitlabRepoSyncTest",
+    deps = [
+        "//:java_test_deps",
+        "//cdp-code-analysis-domain",
+        "//cdp-domain",
+        "//server:server-lib",
+        "@maven//:io_ebean_ebean_agent",
+        "@maven//:io_ebean_ebean_api",
+        "@maven//:io_ebean_ebean_datasource_api",
+    ],
+)

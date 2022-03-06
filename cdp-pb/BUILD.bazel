@@ -1,6 +1,8 @@
 load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
+load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
+load("@vaticle_bazel_distribution//maven:rules.bzl", "assemble_maven", "deploy_maven")
 
 proto_library(
     name = "cdp_event_proto",
@@ -18,6 +20,20 @@ java_grpc_library(
     name = "cdp_event_java_grpc",
     protos = ["//cdp-pb:cdp_event_proto"],
     visibility = ["//visibility:public"],
+)
+
+python_grpc_library(
+    name = "cdp_event_python_grpc",
+    protos = ["//cdp-pb:cdp_event_proto"],
+    visibility = ["//visibility:public"],
+)
+
+assemble_maven(
+    name = "assemble-maven",
+    #    version_file = "//central-sync:VERSION",
+    license = "mit",
+    project_name = "cdp pb",
+    target = ":cdp_event_java_grpc",
 )
 
 proto_library(

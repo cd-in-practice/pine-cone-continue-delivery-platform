@@ -1,0 +1,7 @@
+filegroup(
+    name = "server-test-resource",
+    srcs = glob([
+        "**/*",
+    ]),
+    visibility = ["//visibility:public"],
+)

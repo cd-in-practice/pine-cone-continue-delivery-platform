@@ -1,0 +1,57 @@
+---
+
+server:
+  port: 8080
+grpc:
+  port: 6565
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    favicon:
+      enabled: false
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
+#    注意prefix必须以/结尾
+    prefix: classpath:/templates/pages/
+    content-type: text/html
+    encoding: UTF-8
+    suffix: .html
+    check-template-location: true
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    username: root
+#    password: abcd1234
+#    url: jdbc:postgresql://localhost:5432/cdp
+#
+
+#
+#logging:
+#  level:
+#
+
+#ebean:
+#  dbSchema: cdp
+#  db:
+#    ddl:
+#      generate: false
+#      run: true
+#    username: my_app
+#    password: my_password
+#    url: jdbc:postgresql://localhost:5432/cdp
+
+
+
+
+datasource:
+  default: db
+  db:
+    databaseDriver: org.postgresql.Driver
+    databaseUrl: jdbc:postgresql://172.18.8.101:30002/cdp
+    password: cdp
+    updatesDeleteMissingChildren: true
+    username: cdp

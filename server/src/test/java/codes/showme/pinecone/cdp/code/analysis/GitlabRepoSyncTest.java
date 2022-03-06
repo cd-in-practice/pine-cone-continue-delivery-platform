@@ -5,12 +5,17 @@ import io.ebean.Database;
 import io.ebean.DatabaseFactory;
 import io.ebean.config.DatabaseConfig;
 import io.ebean.datasource.DataSourceConfig;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 public class GitlabRepoSyncTest {
+    @Test
+    public void demo() {
+
+    }
 
     @Test
     @Ignore
